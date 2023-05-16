@@ -8,6 +8,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 // environment variables
+// path: Properties/launchSettings.json
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -19,15 +20,18 @@ if (app.Environment.IsDevelopment())
 // e.g., UseRouting <-> UseEndpoints
 // deprecated version
 app.UseRouting();
-app.UseEndpoints(endPoints =>
-{
-    endPoints.MapGet("/test", async context =>
-    {
-        await context.Response.WriteAsync("this is test api 123");
-    });
-});
+//app.UseEndpoints(endPoints =>
+//{
+//    endPoints.MapGet("/test", async context =>
+//    {
+//        await context.Response.WriteAsync("this is test api 123");
+//    });
+//    endPoints.MapControllers();
+//});
 
-
+//app.UseHttpsRedirection();
+//app.UseAuthorization();
+app.MapControllers();
 
 app.MapGet("/", () => "Hello World!");
 app.Run();
