@@ -1,7 +1,12 @@
-﻿using Expedia.API.Database;
+﻿using Microsoft.Extensions.Configuration;
+using Expedia.API.Database;
 using Expedia.API.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetValue<string>(
+    "DbContext:ConnectionString"
+    );
 
 // register services into IoC container
 // to use api, we need mvc controller
@@ -10,11 +15,15 @@ builder.Services.AddControllers();
 // 1. AddTransient: every request
 // 2. AddSingleton: app init
 // 3. AddScoped: transaction
-builder.Services.AddTransient<ITouristRouteRepository, MockTouristRouteRepository>();
+// mock data
+// builder.Services.AddTransient<ITouristRouteRepository, MockTouristRouteRepository>();
+builder.Services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
+
 // register db context
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
-
+    // load the connection string from "appsettings.json"
+    option.UseSqlServer(connectionString);
 });
 
 
