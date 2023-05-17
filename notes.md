@@ -22,3 +22,12 @@
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer
+
+
+### Migrate db in terminal
+* install dotnet tool
+cmd: dotnet tool install --global dotnet-ef
+
+- cd /yourproject (/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API)
+- dotnet ef migrations add initialMigration
+- dotnet ef database update
