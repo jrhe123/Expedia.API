@@ -1,4 +1,5 @@
-﻿using Expedia.API.Services;
+﻿using Expedia.API.Database;
+using Expedia.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,11 @@ builder.Services.AddControllers();
 // 2. AddSingleton: app init
 // 3. AddScoped: transaction
 builder.Services.AddTransient<ITouristRouteRepository, MockTouristRouteRepository>();
+// register db context
+builder.Services.AddDbContext<AppDbContext>(option =>
+{
+
+});
 
 
 //
