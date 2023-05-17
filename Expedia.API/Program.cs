@@ -1,8 +1,16 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Expedia.API.Services;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // register services into IoC container
 // to use api, we need mvc controller
 builder.Services.AddControllers();
+// register repository
+// 1. AddTransient: every request
+// 2. AddSingleton: app init
+// 3. AddScoped: transaction
+builder.Services.AddTransient<ITouristRouteRepository, MockTouristRouteRepository>();
+
 
 //
 var app = builder.Build();
