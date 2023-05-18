@@ -30,4 +30,5 @@ cmd: dotnet tool install --global dotnet-ef
 
 - cd /yourproject (/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API)
 - dotnet ef migrations add initialMigration
+- dotnet ef migrations add dataSeeding
 - dotnet ef database update

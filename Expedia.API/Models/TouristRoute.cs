@@ -23,11 +23,11 @@ namespace Expedia.API.Models
 		public DateTime? UpdateTime { get; set; }
         public DateTime? DepartureTime { get; set; }
 		[MaxLength]
-		public string Features { get; set; }
+		public string? Features { get; set; }
         [MaxLength]
-        public string Fees { get; set; } // fee description
+        public string? Fees { get; set; } // fee description
         [MaxLength]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
 		public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; }
 			= new List<TouristRoutePicture>();
