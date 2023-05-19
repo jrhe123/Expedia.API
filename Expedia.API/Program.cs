@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
     "DbContext:ConnectionString"
     );
+string mysqlConnectionString = builder.Configuration.GetValue<string>(
+    "DbContext:MySQLConnectionString"
+    );
 
 // register services into IoC container
 // to use api, we need mvc controller
@@ -23,7 +26,14 @@ builder.Services.AddTransient<ITouristRouteRepository, TouristRouteRepository>()
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     // load the connection string from "appsettings.json"
-    option.UseSqlServer(connectionString);
+    // sql server
+    // option.UseSqlServer(connectionString);
+
+    // mysql
+    option.UseMySql(
+        mysqlConnectionString,
+        ServerVersion.AutoDetect(mysqlConnectionString)
+        );
 });
 
 
