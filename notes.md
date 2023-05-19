@@ -18,11 +18,16 @@
 - user: sa
 - password: PgPm0tUXb2jY33cPTv3a
 
+### mysql (optional)
+- docker pull mysql:latest
+- docker run -itd --name mysql-test -p 3306:3306 \
+    -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
 
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer
 - Newtonsoft.Json
+- Pomelo.EntityFrameworkCore.MySql
 
 
 ### Migrate db in terminal
