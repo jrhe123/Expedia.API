@@ -28,8 +28,12 @@ namespace Expedia.API.Models
         public string? Fees { get; set; } // fee description
         [MaxLength]
         public string? Notes { get; set; }
+		public double? Rating { get; set; }
+		public TravelDays? TravelDays { get; set; }
+		public TripType? TripType { get; set; }
+		public DepartureCity DepartureCity { get; set; }
 
-		public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; }
+        public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; }
 			= new List<TouristRoutePicture>();
     }
 }

@@ -34,6 +34,7 @@ cmd: dotnet tool install --global dotnet-ef
 * generate migration files
 - dotnet ef migrations add initialMigration
 - dotnet ef migrations add dataSeeding
+- dotnet ef migrations add updateTouristRouteSchema
 
 * cancel
 - dotnet ef migrations remove
