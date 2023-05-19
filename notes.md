@@ -24,7 +24,7 @@
     -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
 
 ### Postman
-- https://api.postman.com/collections/2637368-d5ee22c1-0e6b-445a-b863-b3d279eed3ee?access_key=PMAT-01H0RXXCNX9PEMEGX27YCPZ5ES
+- https://api.postman.com/collections/2637368-d5ee22c1-0e6b-445a-b863-b3d279eed3ee?access_key=
 - 200 OK, 201 Created, 204 No Content
 - 301/302 Moved Permanently, 304 Not Modified
 - 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found
