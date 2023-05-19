@@ -10,21 +10,35 @@ using Microsoft.AspNetCore.Mvc;
 namespace Expedia.API.Controllers
 {
     [Route("api/[controller]")]
-    public class TouristRoutesController : Controller
+    [ApiController]
+    public class TouristRoutesController : ControllerBase
     {
         private ITouristRouteRepository _touristRouteRepository;
 
-        public TouristRoutesController(ITouristRouteRepository touristRouteRepository)
+        public TouristRoutesController(
+            ITouristRouteRepository touristRouteRepository
+        )
         {
             _touristRouteRepository = touristRouteRepository;
         }
 
 
         // https://localhost:7143/api/touristRoutes
+        [HttpGet]
         public IActionResult GetTouristRoutes()
         {
             var routes = this._touristRouteRepository.GetTouristRoutes();
             return Ok(routes);
+        }
+
+        // https://localhost:7143/api/touristRoutes/{TouristRouteId}
+        [HttpGet("{TouristRouteId:Guid}")]
+        public IActionResult GetTouristRouteById(Guid TouristRouteId)
+        {
+            var touristRoute = this._touristRouteRepository.GetTouristRoute(
+                TouristRouteId
+                );
+            return Ok(touristRoute);
         }
     }
 }

@@ -23,6 +23,9 @@
 - docker run -itd --name mysql-test -p 3306:3306 \
     -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
 
+### Postman
+- https://api.postman.com/collections/2637368-d5ee22c1-0e6b-445a-b863-b3d279eed3ee?access_key=PMAT-01H0RXXCNX9PEMEGX27YCPZ5ES
+
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer
