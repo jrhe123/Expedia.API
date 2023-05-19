@@ -27,18 +27,28 @@ namespace Expedia.API.Controllers
         [HttpGet]
         public IActionResult GetTouristRoutes()
         {
-            var routes = this._touristRouteRepository.GetTouristRoutes();
-            return Ok(routes);
+            var touristRoutesFromRepo =
+                this._touristRouteRepository.GetTouristRoutes();
+            if (touristRoutesFromRepo == null ||
+                touristRoutesFromRepo.Count() == 0)
+            {
+                return NotFound("no found");
+            }
+            return Ok(touristRoutesFromRepo);
         }
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpGet("{TouristRouteId:Guid}")]
         public IActionResult GetTouristRouteById(Guid TouristRouteId)
         {
-            var touristRoute = this._touristRouteRepository.GetTouristRoute(
+            var touristRouteFromRepo = this._touristRouteRepository.GetTouristRoute(
                 TouristRouteId
                 );
-            return Ok(touristRoute);
+            if (touristRouteFromRepo == null)
+            {
+                return NotFound($"not found {TouristRouteId}");
+            }
+            return Ok(touristRouteFromRepo);
         }
     }
 }
