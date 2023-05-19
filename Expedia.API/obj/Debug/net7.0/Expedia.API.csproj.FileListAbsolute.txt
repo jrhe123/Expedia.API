@@ -71,3 +71,5 @@
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Database/touristRoutePicturesMockData.json
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Database/touristRoutesMockData.json
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/MySqlConnector.dll
+/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Pomelo.EntityFrameworkCore.MySql.dll

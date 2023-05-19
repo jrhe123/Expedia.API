@@ -7,9 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
     "DbContext:ConnectionString"
     );
-string mysqlConnectionString = builder.Configuration.GetValue<string>(
-    "DbContext:MySQLConnectionString"
-    );
+//string mysqlConnectionString = builder.Configuration.GetValue<string>(
+//    "DbContext:MySQLConnectionString"
+//    );
 
 // register services into IoC container
 // to use api, we need mvc controller
@@ -27,13 +27,13 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     // load the connection string from "appsettings.json"
     // sql server
-    // option.UseSqlServer(connectionString);
+     option.UseSqlServer(connectionString);
 
     // mysql
-    option.UseMySql(
-        mysqlConnectionString,
-        ServerVersion.AutoDetect(mysqlConnectionString)
-        );
+    //option.UseMySql(
+    //    mysqlConnectionString,
+    //    ServerVersion.AutoDetect(mysqlConnectionString)
+    //    );
 });
 
 
