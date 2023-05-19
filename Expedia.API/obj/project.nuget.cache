@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "X1VPZEU3G2JMxFV1Ukyg3eBBe6RtyYNVXoU48V8ESr44167B/O8rFfuU3R7k9fWlI2dFC2BXeSfDCYBj1i4gZA==",
+  "dgSpecHash": "RCkwoUcuuexgRwOOMpd8gJHAlVy22Znac1+PAzH8fomaRjS05Yz20IZQPRaqIYT3ohaZI3ArqomwZeL7ogPnfQ==",
   "success": true,
   "projectFilePath": "/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/Expedia.API.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "/Users/jiaronghe/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/Users/jiaronghe/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.configuration.configurationmanager/5.0.0/system.configuration.configurationmanager.5.0.0.nupkg.sha512",

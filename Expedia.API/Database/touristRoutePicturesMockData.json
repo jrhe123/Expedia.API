@@ -1,0 +1,47 @@
+﻿[
+  {
+    "Id": 1,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+    "Url": "../../assets/images/1.jpg"
+  },
+  {
+    "Id": 2,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+    "Url": "../../assets/images/2.jpg"
+  },
+  {
+    "Id": 3,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+    "Url": "../../assets/images/3.jpg"
+  },
+  {
+    "Id": 4,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+    "Url": "../../assets/images/4.jpg"
+  },
+  {
+    "Id": 5,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e2",
+    "Url": "../../assets/images/5.jpg"
+  },
+  {
+    "Id": 6,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e3",
+    "Url": "../../assets/images/6.jpg"
+  },
+  {
+    "Id": 7,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e4",
+    "Url": "../../assets/images/7.jpg"
+  },
+  {
+    "Id": 8,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e5",
+    "Url": "../../assets/images/8.jpg"
+  },
+  {
+    "Id": 9,
+    "TouristRouteId": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e6",
+    "Url": "../../assets/images/9.jpg"
+  }
+]

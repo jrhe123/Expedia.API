@@ -13,8 +13,9 @@ namespace Expedia.API.Models
 		[MaxLength(100)]
 		public string Url { get; set; }
 
-		[ForeignKey("TouristRouteId")]
+		[ForeignKey("TouristRoute")]
 		public Guid TouristRouteId { get; set; }
+
 		public TouristRoute TouristRoute { get; set; }
     }
 }

@@ -1,0 +1,62 @@
+﻿[
+  {
+    "Id": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+    "Title": "this is title 1",
+    "Description": "this is description 1",
+    "OriginalPrice": 1999.99,
+    "DiscountPercent": 0.01,
+    "Features": "<div class\"bd\"><p style=\"text-align:center\"><span>features </span><strong></strong></p></div>",
+    "Fees": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>fee includes: 1</dt><dd><div>123</div></dd></dl></div>",
+    "Notes": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>notes includes: 1</dt><dd><div>321</div></dd></dl></div>"
+  },
+  {
+    "Id": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e2",
+    "Title": "this is title 2",
+    "Description": "this is description 2",
+    "OriginalPrice": 1999.99,
+    "DiscountPercent": 0.01,
+    "Features": "<div class\"bd\"><p style=\"text-align:center\"><span>features 2</span><strong></strong></p></div>",
+    "Fees": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>fee includes: 2</dt><dd><div>123</div></dd></dl></div>",
+    "Notes": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>notes includes: 2</dt><dd><div>321</div></dd></dl></div>"
+  },
+  {
+    "Id": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e3",
+    "Title": "this is title 3",
+    "Description": "this is description 3",
+    "OriginalPrice": 1999.99,
+    "DiscountPercent": 0.01,
+    "Features": "<div class\"bd\"><p style=\"text-align:center\"><span>features 3</span><strong></strong></p></div>",
+    "Fees": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>fee includes: 3</dt><dd><div>123</div></dd></dl></div>",
+    "Notes": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>notes includes: 3</dt><dd><div>321</div></dd></dl></div>"
+  },
+  {
+    "Id": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e4",
+    "Title": "this is title 4",
+    "Description": "this is description 4",
+    "OriginalPrice": 1999.99,
+    "DiscountPercent": 0.01,
+    "Features": "<div class\"bd\"><p style=\"text-align:center\"><span>features 4</span><strong></strong></p></div>",
+    "Fees": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>fee includes: 4</dt><dd><div>123</div></dd></dl></div>",
+    "Notes": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>notes includes: 4</dt><dd><div>321</div></dd></dl></div>"
+  },
+  {
+    "Id": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e5",
+    "Title": "this is title 5",
+    "Description": "this is description 5",
+    "OriginalPrice": 1999.99,
+    "DiscountPercent": 0.01,
+    "Features": "<div class\"bd\"><p style=\"text-align:center\"><span>features 5</span><strong></strong></p></div>",
+    "Fees": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>fee includes: 5</dt><dd><div>123</div></dd></dl></div>",
+    "Notes": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>notes includes: 5</dt><dd><div>321</div></dd></dl></div>"
+  },
+  {
+    "Id": "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e6",
+    "Title": "this is title 6",
+    "Description": "this is description 6",
+    "OriginalPrice": 1999.99,
+    "DiscountPercent": 0.01,
+    "Features": "<div class\"bd\"><p style=\"text-align:center\"><span>features 6</span><strong></strong></p></div>",
+    "Fees": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>fee includes: 6</dt><dd><div>123</div></dd></dl></div>",
+    "Notes": "<div class\"bd\"><dl class=\"mod_info_box\"><dt>notes includes: 6</dt><dd><div>321</div></dd></dl></div>"
+  }
+]
