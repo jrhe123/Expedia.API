@@ -17,6 +17,9 @@ namespace Expedia.API.Services
 		// get pictures
 		IEnumerable<TouristRoutePicture> GetPicutresByTouristRouteId
 			(Guid TouristRouteId);
+
+        // get picture by pic id
+        TouristRoutePicture GetPicutre(int PictureId);
     }
 }
 

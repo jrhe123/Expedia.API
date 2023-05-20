@@ -42,7 +42,27 @@ namespace Expedia.API.Controllers
 
             return Ok(
                 _mapper.Map<IEnumerable<TouristRoutePictureDto>>(picturesFromRepo)
-                ); ;
+                );
+        }
+
+        // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
+        [HttpGet("{PictureId}")]
+        public IActionResult GetPicture(Guid TouristRouteId, int PictureId)
+        {
+            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            {
+                return NotFound("tourist route no found");
+            }
+
+            var pictureFromRepo = _touristRouteRepository.GetPicutre(PictureId);
+            if (pictureFromRepo == null)
+            {
+                return NotFound($"tourist route picture no found {PictureId}");
+            }
+
+            return Ok(
+                _mapper.Map<TouristRoutePictureDto>(pictureFromRepo)
+                );
         }
     }
 }

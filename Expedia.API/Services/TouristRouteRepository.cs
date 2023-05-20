@@ -38,6 +38,13 @@ namespace Expedia.API.Services
                 item => item.TouristRouteId == TouristRouteId
                 ).ToList();
         }
+
+        public TouristRoutePicture GetPicutre(int PictureId)
+        {
+            return _context.TouristRoutePictures.FirstOrDefault(
+                item => item.Id == PictureId
+                );
+        }
     }
 }
 
