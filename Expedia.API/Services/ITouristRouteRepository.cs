@@ -10,6 +10,13 @@ namespace Expedia.API.Services
 
 		// get by id
 		TouristRoute GetTouristRoute(Guid TouristRouteId);
+
+		// check if exists
+		bool TouristRouteExists(Guid TouristRouteId);
+
+		// get pictures
+		IEnumerable<TouristRoutePicture> GetPicutresByTouristRouteId
+			(Guid TouristRouteId);
     }
 }
 

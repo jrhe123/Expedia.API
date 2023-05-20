@@ -23,7 +23,21 @@ namespace Expedia.API.Services
             return _context.TouristRoutes.FirstOrDefault(
                 item => item.Id == TouristRouteId
                 );
-        }        
+        }
+
+        public bool TouristRouteExists(Guid TouristRouteId)
+        {
+            return _context.TouristRoutes.Any(
+                item => item.Id == TouristRouteId
+                );
+        }
+
+        public IEnumerable<TouristRoutePicture> GetPicutresByTouristRouteId(Guid TouristRouteId)
+        {
+            return _context.TouristRoutePictures.Where(
+                item => item.TouristRouteId == TouristRouteId
+                ).ToList();
+        }
     }
 }
 

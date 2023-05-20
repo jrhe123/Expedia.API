@@ -49,6 +49,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 // register profiles => handles repo & dto mapping (auto mapper)
+// scan all the profiles under "Profiles" folder
 builder.Services.AddAutoMapper(
     AppDomain.CurrentDomain.GetAssemblies()
     );

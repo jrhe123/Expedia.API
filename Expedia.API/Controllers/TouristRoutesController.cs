@@ -7,8 +7,6 @@ using Expedia.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Expedia.API.Controllers
 {
     [Route("api/[controller]")]
@@ -37,7 +35,7 @@ namespace Expedia.API.Controllers
             if (touristRoutesFromRepo == null ||
                 touristRoutesFromRepo.Count() == 0)
             {
-                return NotFound("no found");
+                return NotFound("tourist route no found");
             }
             var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(
                 touristRoutesFromRepo);
@@ -53,7 +51,7 @@ namespace Expedia.API.Controllers
                 );
             if (touristRouteFromRepo == null)
             {
-                return NotFound($"not found {TouristRouteId}");
+                return NotFound($"tourist route not found {TouristRouteId}");
             }
             var touristRouteDto = _mapper.Map<TouristRouteDto>(
                 touristRouteFromRepo);
