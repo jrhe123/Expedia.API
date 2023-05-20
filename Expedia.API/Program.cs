@@ -8,9 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
     "DbContext:ConnectionString"
     );
-//string mysqlConnectionString = builder.Configuration.GetValue<string>(
+
+//var mysqlConnectionString = builder.Configuration.GetValue<string>(
 //    "DbContext:MySQLConnectionString"
 //    );
+
 
 // register services into IoC container
 // to use api, we need mvc controller
@@ -45,6 +47,11 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     //    ServerVersion.AutoDetect(mysqlConnectionString)
     //    );
 });
+
+// register profiles => handles repo & dto mapping (auto mapper)
+builder.Services.AddAutoMapper(
+    AppDomain.CurrentDomain.GetAssemblies()
+    );
 
 
 //

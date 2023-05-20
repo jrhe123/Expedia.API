@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Expedia.API.Dtos;
 using Expedia.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,12 +16,15 @@ namespace Expedia.API.Controllers
     public class TouristRoutesController : ControllerBase
     {
         private ITouristRouteRepository _touristRouteRepository;
+        private readonly IMapper _mapper;
 
         public TouristRoutesController(
-            ITouristRouteRepository touristRouteRepository
+            ITouristRouteRepository touristRouteRepository,
+            IMapper mapper
         )
         {
             _touristRouteRepository = touristRouteRepository;
+            _mapper = mapper;
         }
 
 
@@ -35,7 +39,9 @@ namespace Expedia.API.Controllers
             {
                 return NotFound("no found");
             }
-            return Ok(touristRoutesFromRepo);
+            var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(
+                touristRoutesFromRepo);
+            return Ok(touristRoutesDto);
         }
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
@@ -49,22 +55,8 @@ namespace Expedia.API.Controllers
             {
                 return NotFound($"not found {TouristRouteId}");
             }
-            var touristRouteDto = new TouristRouteDto()
-            {
-                Id= touristRouteFromRepo.Id,
-                Title = touristRouteFromRepo.Title,
-                Description = touristRouteFromRepo.Description,
-                Price = touristRouteFromRepo.OriginalPrice * (decimal)(touristRouteFromRepo.DiscountPercent),
-                CreateTime = touristRouteFromRepo.CreateTime,
-                UpdateTime = touristRouteFromRepo.UpdateTime,
-                Features = touristRouteFromRepo.Features,
-                Fees = touristRouteFromRepo.Fees,
-                Notes = touristRouteFromRepo.Notes,
-                Rating = touristRouteFromRepo.Rating,
-                TravelDays = touristRouteFromRepo.TravelDays.ToString(),
-                TripType = touristRouteFromRepo.TripType.ToString(),
-                DepartureCity = touristRouteFromRepo.DepartureCity.ToString()
-            };
+            var touristRouteDto = _mapper.Map<TouristRouteDto>(
+                touristRouteFromRepo);
             return Ok(touristRouteDto);
         }
     }

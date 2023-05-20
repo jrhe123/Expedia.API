@@ -40,8 +40,9 @@
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer
-- Newtonsoft.Json
+- Newtonsoft.Json -> parse json string, deserialized
 - Pomelo.EntityFrameworkCore.MySql
+- AutoMapper.Extensions.Microsoft.DependencyInjection -> dto mapping
 
 
 ### Migrate db in terminal
