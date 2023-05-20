@@ -41,6 +41,16 @@
 - no body
 - support cache
 
+### API attributes
+- FromQuery
+- FromBody
+- FromFom
+- FromRoute
+- FromService
+
+### Log
+- Console.WriteLine("+++++ Keyword: " + Keyword);
+
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer

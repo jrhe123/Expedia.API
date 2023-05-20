@@ -26,13 +26,15 @@ namespace Expedia.API.Controllers
         }
 
 
-        // https://localhost:7143/api/touristRoutes
+        // https://localhost:7143/api/touristRoutes?Keyword=xxx
         [HttpGet]
         [HttpHead]
-        public IActionResult GetTouristRoutes()
+        public IActionResult GetTouristRoutes(
+            [FromQuery(Name = "Keyword")] string Keyword
+            )
         {
             var touristRoutesFromRepo =
-                this._touristRouteRepository.GetTouristRoutes();
+                this._touristRouteRepository.GetTouristRoutes(Keyword);
             if (touristRoutesFromRepo == null ||
                 touristRoutesFromRepo.Count() == 0)
             {

@@ -14,13 +14,21 @@ namespace Expedia.API.Services
             _context = context;
         }
 
-        public IEnumerable<TouristRoute> GetTouristRoutes()
+        public IEnumerable<TouristRoute> GetTouristRoutes(string Keyword)
         {
             // return _context.TouristRoutes;
-            // include / join
-            return _context.TouristRoutes.Include(
-                item => item.TouristRoutePictures
+
+            IQueryable<TouristRoute> result = _context.TouristRoutes
+                .Include(
+                    item => item.TouristRoutePictures
                 );
+            if (!string.IsNullOrWhiteSpace(Keyword))
+            {
+                Keyword = Keyword.Trim();
+                result = result.Where(item => item.Title.Contains(Keyword));
+            }
+            // include / join
+            return result.ToList();
         }
 
         public TouristRoute GetTouristRoute(Guid TouristRouteId)
