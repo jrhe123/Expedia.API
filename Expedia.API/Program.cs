@@ -2,6 +2,7 @@
 using Expedia.API.Database;
 using Expedia.API.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
@@ -13,7 +14,16 @@ var connectionString = builder.Configuration.GetValue<string>(
 
 // register services into IoC container
 // to use api, we need mvc controller
-builder.Services.AddControllers();
+builder.Services.AddControllers(
+    setupAction =>
+    {
+        // enable xml as response
+        setupAction.ReturnHttpNotAcceptable = true;
+        //setupAction.OutputFormatters.Add(
+        //    new XmlDataContractSerializerOutputFormatter()
+        //);
+    }
+    ).AddXmlDataContractSerializerFormatters();
 // register repository
 // 1. AddTransient: every request
 // 2. AddSingleton: app init

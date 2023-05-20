@@ -30,6 +30,13 @@
 - 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found
 - 500 Internal Server Error, 502 Bad Gateway
 
+### Rest
+- Headers
+    - Accept
+        - application/xml
+        - application/json
+    - Content-Type
+
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer

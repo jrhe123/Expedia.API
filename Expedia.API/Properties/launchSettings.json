@@ -10,7 +10,6 @@
   "profiles": {
     "http": {
       "commandName": "Project",
-      "launchBrowser": true,
       "applicationUrl": "http://localhost:5117",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -19,7 +18,6 @@
     },
     "https": {
       "commandName": "Project",
-      "launchBrowser": true,
       "applicationUrl": "https://localhost:7143;http://localhost:5117",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -28,7 +26,6 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
