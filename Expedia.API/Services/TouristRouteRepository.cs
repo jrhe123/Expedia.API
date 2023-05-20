@@ -1,6 +1,7 @@
 ﻿using System;
 using Expedia.API.Database;
 using Expedia.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Expedia.API.Services
 {
@@ -15,12 +16,18 @@ namespace Expedia.API.Services
 
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
-            return _context.TouristRoutes;
+            // return _context.TouristRoutes;
+            // include / join
+            return _context.TouristRoutes.Include(
+                item => item.TouristRoutePictures
+                );
         }
 
         public TouristRoute GetTouristRoute(Guid TouristRouteId)
         {
-            return _context.TouristRoutes.FirstOrDefault(
+            return _context.TouristRoutes.Include(
+                item => item.TouristRoutePictures
+                ).FirstOrDefault(
                 item => item.Id == TouristRouteId
                 );
         }

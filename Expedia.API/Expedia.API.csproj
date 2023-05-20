@@ -16,6 +16,7 @@
     <None Remove="Database\" />
     <None Remove="Dtos\" />
     <None Remove="Profiles\" />
+    <None Remove="Services\mock\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -24,6 +25,7 @@
     <Folder Include="Database\" />
     <Folder Include="Dtos\" />
     <Folder Include="Profiles\" />
+    <Folder Include="Services\mock\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
