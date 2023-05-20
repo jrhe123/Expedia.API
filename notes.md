@@ -30,12 +30,16 @@
 - 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found
 - 500 Internal Server Error, 502 Bad Gateway
 
-### Rest
+### REST
 - Headers
     - Accept
         - application/xml
         - application/json
     - Content-Type
+
+### Add HEAD support
+- no body
+- support cache
 
 ### Manage NuGet Packages
 - Microsoft.EntityFrameworkCore

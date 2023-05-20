@@ -28,6 +28,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes
         [HttpGet]
+        [HttpHead]
         public IActionResult GetTouristRoutes()
         {
             var touristRoutesFromRepo =
@@ -42,8 +43,10 @@ namespace Expedia.API.Controllers
             return Ok(touristRoutesDto);
         }
 
+
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpGet("{TouristRouteId:Guid}")]
+        [HttpHead("{TouristRouteId:Guid}")]
         public IActionResult GetTouristRouteById(Guid TouristRouteId)
         {
             var touristRouteFromRepo = this._touristRouteRepository.GetTouristRoute(
