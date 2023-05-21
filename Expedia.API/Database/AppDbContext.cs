@@ -8,10 +8,16 @@ using System.Reflection; // path
 using System.Text.Json; // parse json
 using System.Text.Json.Serialization;
 //using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Expedia.API.Database
 {
-	public class AppDbContext: DbContext
+    /**
+     * IdentityDbContext: user entity
+     * DbContext: regular
+     */
+    public class AppDbContext: IdentityDbContext<IdentityUser> //: DbContext
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options)
 			: base(options)

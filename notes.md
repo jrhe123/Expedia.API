@@ -85,6 +85,7 @@
 - Microsoft.AspNetCore.JsonPatch -> "patch update" inputs
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson -> for json patch
 - Microsoft.AspNetCore.Authentication.JwtBearer -> jwt support
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore -> user entity
 
 ### Migrate db in terminal
 * install dotnet tool
