@@ -19,6 +19,7 @@
     <None Remove="Services\mock\" />
     <None Remove="ResourceParameters\" />
     <None Remove="ValidationAttributes\" />
+    <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -30,6 +31,7 @@
     <Folder Include="Services\mock\" />
     <Folder Include="ResourceParameters\" />
     <Folder Include="ValidationAttributes\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
