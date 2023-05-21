@@ -11,6 +11,9 @@ namespace Expedia.API.Profiles
 		{
             // mapping
             CreateMap<TouristRoutePicture, TouristRoutePictureDto>();
+
+            // create
+            CreateMap<TouristRoutePictureForCreatingDto, TouristRoutePicture>();
         }
 	}
 }

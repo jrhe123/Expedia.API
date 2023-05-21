@@ -55,7 +55,7 @@ namespace Expedia.API.Profiles
                         )
                 );
 
-            //
+            // create
             CreateMap<TouristRouteForCreatingDto, TouristRoute>()
                 .ForMember(
                     dest => dest.Id,

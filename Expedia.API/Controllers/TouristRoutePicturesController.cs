@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Expedia.API.Dtos;
+using Expedia.API.Models;
 using Expedia.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +47,7 @@ namespace Expedia.API.Controllers
         }
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
-        [HttpGet("{PictureId}")]
+        [HttpGet("{PictureId}", Name = "GetPicture")]
         public IActionResult GetPicture(Guid TouristRouteId, int PictureId)
         {
             if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
@@ -62,6 +63,38 @@ namespace Expedia.API.Controllers
 
             return Ok(
                 _mapper.Map<TouristRoutePictureDto>(pictureFromRepo)
+                );
+        }
+
+        [HttpPost]
+        public IActionResult CreateTouristRoutePicture(
+            [FromRoute] Guid TouristRouteId,
+            [FromBody] TouristRoutePictureForCreatingDto touristRoutePictureForCreatingDto
+            )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            {
+                return NotFound("tourist route no found");
+            }
+
+            var touristRoutePicture = _mapper.Map<TouristRoutePicture>(
+                touristRoutePictureForCreatingDto);
+            _touristRouteRepository.AddTouristRoutePicture(
+                TouristRouteId,
+                touristRoutePicture
+                );
+            _touristRouteRepository.Save();
+
+            var touristRoutePictureDto = _mapper.Map<TouristRoutePictureDto>(
+                touristRoutePicture);
+
+            return CreatedAtRoute(
+                "GetPicture",
+                 new {
+                     TouristRouteId = touristRoutePicture.TouristRouteId,
+                     PictureId = touristRoutePicture.Id,
+                     },
+                 touristRoutePictureDto
                 );
         }
     }

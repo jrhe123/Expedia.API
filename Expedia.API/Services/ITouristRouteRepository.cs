@@ -28,6 +28,12 @@ namespace Expedia.API.Services
 		// create
 		void AddTouristRoute(TouristRoute touristRoute);
 
+		// create picture
+		void AddTouristRoutePicture(
+            Guid TouristRouteId,
+            TouristRoutePicture touristRoutePicture
+			);
+
 
 		// save repo
 		bool Save();
