@@ -8,8 +8,8 @@ namespace Expedia.API.Services
 		// list
 		IEnumerable<TouristRoute> GetTouristRoutes(
 			string Keyword,
-			string OperatorType,
-			int RatingValue
+			string RatingOperator,
+			int? RatingValue
             );
 
 		// get by id

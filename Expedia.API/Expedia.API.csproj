@@ -17,6 +17,7 @@
     <None Remove="Dtos\" />
     <None Remove="Profiles\" />
     <None Remove="Services\mock\" />
+    <None Remove="ResourceParameters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -26,6 +27,7 @@
     <Folder Include="Dtos\" />
     <Folder Include="Profiles\" />
     <Folder Include="Services\mock\" />
+    <Folder Include="ResourceParameters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />

@@ -16,8 +16,8 @@ namespace Expedia.API.Services
 
         public IEnumerable<TouristRoute> GetTouristRoutes(
             string Keyword,
-            string OperatorType,
-            int RatingValue
+            string RatingOperator,
+            int? RatingValue
         )
         {
             // return _context.TouristRoutes;
@@ -33,7 +33,7 @@ namespace Expedia.API.Services
             }
             if (RatingValue >= 0)
             {
-                //switch(OperatorType)
+                //switch(RatingOperator)
                 //{
                 //    case "largerThan":
                 //        result = result.Where(item => item.Rating >= RatingValue);
@@ -45,7 +45,7 @@ namespace Expedia.API.Services
                 //        result = result.Where(item => item.Rating == RatingValue);
                 //        break;
                 //}
-                result = OperatorType switch
+                result = RatingOperator switch
                 {
                     "largerThan" => result.Where(item => item.Rating >= RatingValue),
                     "lessThan" => result.Where(item => item.Rating <= RatingValue),
