@@ -27,7 +27,7 @@
 - https://api.postman.com/collections/2637368-d5ee22c1-0e6b-445a-b863-b3d279eed3ee?access_key=
 - 200 OK, 201 Created, 204 No Content
 - 301/302 Moved Permanently, 304 Not Modified
-- 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found
+- 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 422 Unprocessable Entity Data
 - 500 Internal Server Error, 502 Bad Gateway
 
 ### REST

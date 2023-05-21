@@ -18,6 +18,7 @@
     <None Remove="Profiles\" />
     <None Remove="Services\mock\" />
     <None Remove="ResourceParameters\" />
+    <None Remove="ValidationAttributes\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -28,6 +29,7 @@
     <Folder Include="Profiles\" />
     <Folder Include="Services\mock\" />
     <Folder Include="ResourceParameters\" />
+    <Folder Include="ValidationAttributes\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />

@@ -3,6 +3,8 @@ using Expedia.API.Database;
 using Expedia.API.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
@@ -25,7 +27,30 @@ builder.Services.AddControllers(
         //    new XmlDataContractSerializerOutputFormatter()
         //);
     }
-    ).AddXmlDataContractSerializerFormatters();
+    )
+    .AddXmlDataContractSerializerFormatters()
+    .ConfigureApiBehaviorOptions(setAction =>
+    {
+        // custom validate input context message & status code
+        setAction.InvalidModelStateResponseFactory = context =>
+        {
+            var problemDetail = new ValidationProblemDetails(context.ModelState)
+            {
+                Type = "VALIDATE_PARAMS",
+                Title = "Data validation error",
+                Status = StatusCodes.Status422UnprocessableEntity,
+                Detail = "Please check errors",
+                Instance = context.HttpContext.Request.Path
+            };
+            problemDetail.Extensions.Add(
+                "traceId", context.HttpContext.TraceIdentifier
+                );
+            return new UnprocessableEntityObjectResult(problemDetail)
+            {
+                ContentTypes = {"application/problem+json"}
+            };
+        };
+    });
 // register repository
 // 1. AddTransient: every request
 // 2. AddSingleton: app init
@@ -71,17 +96,8 @@ if (app.Environment.IsDevelopment())
 // e.g., UseRouting <-> UseEndpoints
 // deprecated version
 app.UseRouting();
-//app.UseEndpoints(endPoints =>
-//{
-//    endPoints.MapGet("/test", async context =>
-//    {
-//        await context.Response.WriteAsync("this is test api 123");
-//    });
-//    endPoints.MapControllers();
-//});
 
-//app.UseHttpsRedirection();
-//app.UseAuthorization();
+// mvc
 app.MapControllers();
 
 app.MapGet("/", () => "Hello World!");
