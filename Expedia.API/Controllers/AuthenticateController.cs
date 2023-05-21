@@ -36,6 +36,10 @@ namespace Expedia.API.Controllers
                     JwtRegisteredClaimNames.Sub,
                     "fake_user_id"
                 ),
+                new Claim(
+                    ClaimTypes.Role,
+                    "Admin"
+                    )
             };
             var secretByte = Encoding.UTF8.GetBytes(
                 _configuration["Authenitication:SecretKey"]

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data;
 using AutoMapper;
 using Expedia.API.Dtos;
 using Expedia.API.Models;
 using Expedia.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expedia.API.Controllers
@@ -67,6 +69,7 @@ namespace Expedia.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateTouristRoutePicture(
             [FromRoute] Guid TouristRouteId,
             [FromBody] TouristRoutePictureForCreatingDto touristRoutePictureForCreatingDto
@@ -101,6 +104,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
         [HttpDelete("{PictureId}", Name = "DeleteTouristRoutePicture")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTouristRoutePicture(
             [FromRoute] Guid TouristRouteId,
             [FromRoute] int PictureId
