@@ -14,7 +14,11 @@ namespace Expedia.API.Services
             _context = context;
         }
 
-        public IEnumerable<TouristRoute> GetTouristRoutes(string Keyword)
+        public IEnumerable<TouristRoute> GetTouristRoutes(
+            string Keyword,
+            string OperatorType,
+            int RatingValue
+        )
         {
             // return _context.TouristRoutes;
 
@@ -26,6 +30,27 @@ namespace Expedia.API.Services
             {
                 Keyword = Keyword.Trim();
                 result = result.Where(item => item.Title.Contains(Keyword));
+            }
+            if (RatingValue >= 0)
+            {
+                //switch(OperatorType)
+                //{
+                //    case "largerThan":
+                //        result = result.Where(item => item.Rating >= RatingValue);
+                //        break;
+                //    case "lessThan":
+                //        result = result.Where(item => item.Rating <= RatingValue);
+                //        break;
+                //    case "equalTo":
+                //        result = result.Where(item => item.Rating == RatingValue);
+                //        break;
+                //}
+                result = OperatorType switch
+                {
+                    "largerThan" => result.Where(item => item.Rating >= RatingValue),
+                    "lessThan" => result.Where(item => item.Rating <= RatingValue),
+                    _ => result.Where(item => item.Rating == RatingValue),
+                };
             }
             // include / join
             return result.ToList();

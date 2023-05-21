@@ -48,6 +48,9 @@
 - FromRoute
 - FromService
 
+### Linq
+- IQueryable
+
 ### Log
 - Console.WriteLine("+++++ Keyword: " + Keyword);
 

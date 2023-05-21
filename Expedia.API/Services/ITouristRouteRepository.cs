@@ -6,7 +6,11 @@ namespace Expedia.API.Services
 	public interface ITouristRouteRepository
 	{
 		// list
-		IEnumerable<TouristRoute> GetTouristRoutes(string Keyword);
+		IEnumerable<TouristRoute> GetTouristRoutes(
+			string Keyword,
+			string OperatorType,
+			int RatingValue
+            );
 
 		// get by id
 		TouristRoute GetTouristRoute(Guid TouristRouteId);

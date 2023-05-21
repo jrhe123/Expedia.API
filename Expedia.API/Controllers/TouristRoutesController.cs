@@ -6,6 +6,7 @@ using Expedia.API.Dtos;
 using Expedia.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using System.Text.RegularExpressions;
 
 namespace Expedia.API.Controllers
 {
@@ -26,15 +27,30 @@ namespace Expedia.API.Controllers
         }
 
 
-        // https://localhost:7143/api/touristRoutes?Keyword=xxx
+        // https://localhost:7143/api/touristRoutes?Keyword=xxx&Rating=largerThan3
         [HttpGet]
         [HttpHead]
         public IActionResult GetTouristRoutes(
-            [FromQuery(Name = "Keyword")] string Keyword
+            [FromQuery(Name = "Keyword")] string Keyword,
+            [FromQuery(Name = "Rating")] string Rating // lessThan, largerThan, equalTo
             )
         {
+            Regex regex = new Regex(@"([A-Za-z0-9\-]+)(\d+)");
+            string operatorType = "";
+            int ratingValue = -1;
+            Match match = regex.Match(Rating);
+            if (match.Success)
+            {
+                operatorType = match.Groups[1].Value;
+                ratingValue = Int32.Parse(match.Groups[2].Value);
+            }
+
             var touristRoutesFromRepo =
-                this._touristRouteRepository.GetTouristRoutes(Keyword);
+                this._touristRouteRepository.GetTouristRoutes(
+                    Keyword,
+                    operatorType,
+                    ratingValue
+                    );
             if (touristRoutesFromRepo == null ||
                 touristRoutesFromRepo.Count() == 0)
             {
