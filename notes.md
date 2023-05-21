@@ -103,3 +103,8 @@ cmd: dotnet tool install --global dotnet-ef
 
 * execute
 - dotnet ef database update
+
+### short-cut key
+search: cmd + shift + f
+build: cmd + option + enter
+double click: collapse side bar

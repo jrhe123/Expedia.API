@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Expedia.API.Dtos;
+using Expedia.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +16,13 @@ namespace Expedia.API.Controllers
     public class AuthenticateController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public AuthenticateController(
             IConfiguration configuration,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager
         )
         {
             this._configuration = configuration;
@@ -87,7 +88,7 @@ namespace Expedia.API.Controllers
             )
         {
             // 1. create user
-            var user = new IdentityUser()
+            var user = new ApplicationUser()
             {
                 UserName = registerDto.Email,
                 Email = registerDto.Email

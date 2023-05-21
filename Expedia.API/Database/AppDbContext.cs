@@ -17,7 +17,7 @@ namespace Expedia.API.Database
      * IdentityDbContext: user entity
      * DbContext: regular
      */
-    public class AppDbContext: IdentityDbContext<IdentityUser> //: DbContext
+    public class AppDbContext: IdentityDbContext<ApplicationUser> //: DbContext
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options)
 			: base(options)
@@ -66,8 +66,52 @@ namespace Expedia.API.Database
             modelBuilder.Entity<TouristRoutePicture>().HasData(touristRoutePictures);
 
 
-
-
+            // add user roles
+            // 1. foreign keys
+            modelBuilder.Entity<ApplicationUser>(u =>
+            {
+                u.HasMany(x => x.UserRoles)
+                .WithOne().HasForeignKey(ur => ur.UserId)
+                .IsRequired();
+            });
+            // 2. add role
+            var adminRoleId = "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e9";
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole()
+                {
+                    Id = adminRoleId,
+                    Name = "Admin",
+                    NormalizedName = "Admin".ToUpper()
+                }
+                );
+            // 3. add user
+            var adminUserId = "fb6d4f10-79ed-4aff-a915-4ce29dc9c7e0";
+            ApplicationUser adminUser = new ApplicationUser()
+            {
+                Id = adminUserId,
+                UserName = "admin@testorg.com",
+                NormalizedUserName = "admin@testorg.com".ToUpper(),
+                Email = "admin@testorg.com",
+                NormalizedEmail = "admin@testorg.com".ToUpper(),
+                TwoFactorEnabled = false,
+                EmailConfirmed = true,
+                PhoneNumber = "1234567890",
+                PhoneNumberConfirmed = false,
+            };
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+            adminUser.PasswordHash = passwordHasher.HashPassword(
+                adminUser, "123456"
+                );
+            // save it to db
+            modelBuilder.Entity<ApplicationUser>().HasData(adminUser);
+            // 4. add role to admin (userRole)
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>()
+                {
+                    RoleId = adminRoleId,
+                    UserId = adminUserId
+                }
+                );
 
 
             base.OnModelCreating(modelBuilder);
