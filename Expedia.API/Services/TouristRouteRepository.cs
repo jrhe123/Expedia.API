@@ -85,6 +85,21 @@ namespace Expedia.API.Services
                 item => item.Id == PictureId
                 );
         }
+
+        public void AddTouristRoute(TouristRoute touristRoute)
+        {
+            if (touristRoute == null)
+            {
+                throw new ArgumentNullException(nameof(touristRoute));
+            }
+            // only save in ram, need to commit it
+            _context.TouristRoutes.Add(touristRoute);
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() >= 0;
+        }
     }
 }
 

@@ -54,6 +54,15 @@ namespace Expedia.API.Profiles
                         src => src.DepartureCity.ToString()
                         )
                 );
+
+            //
+            CreateMap<TouristRouteForCreatingDto, TouristRoute>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.MapFrom(
+                        src => Guid.NewGuid()   // add guid
+                        )
+                );
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using System.Text.RegularExpressions;
 using Expedia.API.ResourceParameters;
+using Expedia.API.Models;
 
 namespace Expedia.API.Controllers
 {
@@ -57,8 +58,8 @@ namespace Expedia.API.Controllers
 
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
-        [HttpGet("{TouristRouteId:Guid}")]
-        [HttpHead("{TouristRouteId:Guid}")]
+        [HttpGet("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
+        [HttpHead("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
         public IActionResult GetTouristRouteById(Guid TouristRouteId)
         {
             var touristRouteFromRepo = this._touristRouteRepository.GetTouristRoute(
@@ -71,6 +72,27 @@ namespace Expedia.API.Controllers
             var touristRouteDto = _mapper.Map<TouristRouteDto>(
                 touristRouteFromRepo);
             return Ok(touristRouteDto);
+        }
+
+        [HttpPost]
+        public IActionResult CreateTouristRoute(
+            [FromBody] TouristRouteForCreatingDto touristRouteForCreatingDto
+            )
+        {
+            var touristRoute = _mapper.Map<TouristRoute>(
+                touristRouteForCreatingDto);
+
+            _touristRouteRepository.AddTouristRoute(touristRoute);
+            bool savedRepo = _touristRouteRepository.Save();
+
+            var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRoute);
+            // Hatoas: in response header "Location", created resource in "GET"
+            // e.g., https://localhost:7143/api/TouristRoutes/af4164ea-b21a-4af9-9e6a-861544bc24ff
+            return CreatedAtRoute(
+                "GetTouristRouteById",
+                new { TouristRouteId = touristRouteDto.Id },
+                touristRouteDto
+                );
         }
     }
 }

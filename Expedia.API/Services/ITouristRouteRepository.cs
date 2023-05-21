@@ -24,6 +24,13 @@ namespace Expedia.API.Services
 
         // get picture by pic id
         TouristRoutePicture GetPicutre(int PictureId);
+
+		// create
+		void AddTouristRoute(TouristRoute touristRoute);
+
+
+		// save repo
+		bool Save();
     }
 }
 
