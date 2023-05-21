@@ -151,6 +151,25 @@ namespace Expedia.API.Controllers
 
             return NoContent();
         }
+
+
+        [HttpDelete("{TouristRouteId:Guid}", Name = "DeleteTouristRoute")]
+        public IActionResult DeleteTouristRoute(
+            [FromRoute] Guid TouristRouteId
+            )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            {
+                return NotFound($"Tourist route not found {TouristRouteId}");
+            }
+
+            var touristRouteRepo = _touristRouteRepository.GetTouristRoute(
+                TouristRouteId);
+            _touristRouteRepository.DeleteTouristRoute(touristRouteRepo);
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
     }
 }
 

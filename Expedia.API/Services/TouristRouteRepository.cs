@@ -118,6 +118,11 @@ namespace Expedia.API.Services
         {
             return _context.SaveChanges() >= 0;
         }
+
+        public void DeleteTouristRoute(TouristRoute touristRoute)
+        {
+            _context.TouristRoutes.Remove(touristRoute);
+        }
     }
 }
 
