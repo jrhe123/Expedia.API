@@ -66,6 +66,9 @@ namespace Expedia.API.Profiles
 
             // update
             CreateMap<TouristRouteForUpdatingDto, TouristRoute>();
+
+            // patch update
+            CreateMap<TouristRoute, TouristRouteForUpdatingDto>();
         }
     }
 }

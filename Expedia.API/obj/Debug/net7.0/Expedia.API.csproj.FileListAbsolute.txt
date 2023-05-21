@@ -75,3 +75,6 @@
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Pomelo.EntityFrameworkCore.MySql.dll
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/AutoMapper.dll
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll

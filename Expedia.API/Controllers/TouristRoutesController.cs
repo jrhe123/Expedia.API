@@ -9,6 +9,7 @@ using AutoMapper;
 using System.Text.RegularExpressions;
 using Expedia.API.ResourceParameters;
 using Expedia.API.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Expedia.API.Controllers
 {
@@ -114,6 +115,38 @@ namespace Expedia.API.Controllers
             // 3. dto -> repo (context updated, just need to commit)
             _mapper.Map(touristRouteForUpdatingDto, touristRouteRepo);
             // update
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
+
+        // https://localhost:7143/api/touristRoutes/{TouristRouteId}
+        [HttpPatch("{TouristRouteId:Guid}", Name = "PartialUpdateTouristRoute")]
+        public IActionResult PartialUpdateTouristRoute(
+            [FromRoute] Guid TouristRouteId,
+            [FromBody] JsonPatchDocument<TouristRouteForUpdatingDto> PatchDocument
+            )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            {
+                return NotFound($"Tourist route not found {TouristRouteId}");
+            }
+
+            var touristRouteRepo = _touristRouteRepository.GetTouristRoute(
+                TouristRouteId);
+            var touristRouteForUpdatingDto = _mapper.Map<TouristRouteForUpdatingDto>(
+                touristRouteRepo);
+            // partial updates
+            PatchDocument.ApplyTo(touristRouteForUpdatingDto, ModelState);
+
+            // b/c of JsonPatchDocument cannot validate data for "TouristRouteForUpdatingDto"
+            // we check the data validate now (ModelState)
+            if (!TryValidateModel(touristRouteForUpdatingDto))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(touristRouteForUpdatingDto, touristRouteRepo);
             _touristRouteRepository.Save();
 
             return NoContent();

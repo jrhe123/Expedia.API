@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
@@ -28,6 +29,12 @@ builder.Services.AddControllers(
         //);
     }
     )
+    .AddNewtonsoftJson(setupAction =>
+    {
+        // for "JsonPatchDocument" patch api
+        setupAction.SerializerSettings.ContractResolver =
+            new CamelCasePropertyNamesContractResolver();
+    })
     .AddXmlDataContractSerializerFormatters()
     .ConfigureApiBehaviorOptions(setAction =>
     {

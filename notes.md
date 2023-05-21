@@ -30,12 +30,24 @@
 - 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 422 Unprocessable Entity Data
 - 500 Internal Server Error, 502 Bad Gateway
 
-### REST
+### REST (Hatoas)
 - Headers
     - Accept
         - application/xml
         - application/json
     - Content-Type
+- Patch (e.g.,)
+    - add
+    - remove
+    - replace
+    - move
+    - copy
+    - test
+    [
+        {"op": "replace", "path": "/title", "value": "abc"},
+        {"op": "remove", "path": "/originalPrice"},
+        {"op": "replace", "path": "/picture/url", "value": "../../images/123.jpg"},
+    ]
 
 ### Add HEAD support
 - no body
@@ -60,6 +72,8 @@
 - Newtonsoft.Json -> parse json string, deserialized
 - Pomelo.EntityFrameworkCore.MySql
 - AutoMapper.Extensions.Microsoft.DependencyInjection -> dto mapping
+- Microsoft.AspNetCore.JsonPatch -> "patch update" inputs
+- Microsoft.AspNetCore.Mvc.NewtonsoftJson -> for json patch
 
 
 ### Migrate db in terminal
