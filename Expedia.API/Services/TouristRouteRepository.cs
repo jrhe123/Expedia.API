@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Expedia.API.Database;
 using Expedia.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -127,6 +128,19 @@ namespace Expedia.API.Services
         public void DeleteTouristRoutePicture(TouristRoutePicture touristRoutePicture)
         {
             _context.TouristRoutePictures.Remove(touristRoutePicture);
+        }
+
+        public IEnumerable<TouristRoute> GetTouristRoutesByIdList(IEnumerable<Guid> ids)
+        {
+            return _context.TouristRoutes.Where(
+                item => ids.Contains(item.Id)
+                ).ToList();
+        }
+
+        public void DeleteTouristRoutes(IEnumerable<TouristRoute> touristRoutes)
+        {
+            // delete many
+            _context.TouristRoutes.RemoveRange(touristRoutes);
         }
     }
 }

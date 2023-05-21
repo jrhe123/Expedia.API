@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using Expedia.API.ResourceParameters;
 using Expedia.API.Models;
 using Microsoft.AspNetCore.JsonPatch;
+using Expedia.API.Helpers;
 
 namespace Expedia.API.Controllers
 {
@@ -166,6 +167,27 @@ namespace Expedia.API.Controllers
             var touristRouteRepo = _touristRouteRepository.GetTouristRoute(
                 TouristRouteId);
             _touristRouteRepository.DeleteTouristRoute(touristRouteRepo);
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
+
+        // https://localhost:7143/api/touristRoutes/{TouristRouteIds}
+        [HttpDelete("({TouristRouteIds})")]
+        public IActionResult DeleteByIds(
+            // convert "guids" to array of guids
+            [ModelBinder(BinderType = typeof(ArrayModelBinder))][FromRoute] IEnumerable<Guid> TouristRouteIds
+            )
+        {
+            if (TouristRouteIds == null)
+            {
+                return BadRequest();
+            }
+
+            var touristRoutesFromRepo = _touristRouteRepository.GetTouristRoutesByIdList(
+                TouristRouteIds
+                );
+            _touristRouteRepository.DeleteTouristRoutes(touristRoutesFromRepo);
             _touristRouteRepository.Save();
 
             return NoContent();

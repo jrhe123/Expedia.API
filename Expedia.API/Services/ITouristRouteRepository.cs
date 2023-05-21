@@ -15,6 +15,9 @@ namespace Expedia.API.Services
 		// get by id
 		TouristRoute GetTouristRoute(Guid TouristRouteId);
 
+		// get by ids
+		IEnumerable<TouristRoute> GetTouristRoutesByIdList(IEnumerable<Guid> ids);
+
 		// check if exists
 		bool TouristRouteExists(Guid TouristRouteId);
 
@@ -37,8 +40,11 @@ namespace Expedia.API.Services
 		// delete
 		void DeleteTouristRoute(TouristRoute touristRoute);
 
-		// delete picture
-		void DeleteTouristRoutePicture(TouristRoutePicture touristRoutePicture);
+		// delete tourist route(s)
+		void DeleteTouristRoutes(IEnumerable<TouristRoute> touristRoutes);
+
+        // delete picture
+        void DeleteTouristRoutePicture(TouristRoutePicture touristRoutePicture);
 
         // save repo
         bool Save();
