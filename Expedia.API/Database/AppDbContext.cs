@@ -120,6 +120,8 @@ namespace Expedia.API.Database
         // mapping model -> tables
         public DbSet<TouristRoute> TouristRoutes { get; set; }
 		public DbSet<TouristRoutePicture> TouristRoutePictures { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<LineItem> LineItems { get; set; }
     }
 }
 
