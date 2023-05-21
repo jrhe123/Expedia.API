@@ -63,6 +63,9 @@ namespace Expedia.API.Profiles
                         src => Guid.NewGuid()   // add guid
                         )
                 );
+
+            // update
+            CreateMap<TouristRouteForUpdatingDto, TouristRoute>();
         }
     }
 }

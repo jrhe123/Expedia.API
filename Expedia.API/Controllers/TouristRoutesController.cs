@@ -74,6 +74,7 @@ namespace Expedia.API.Controllers
             return Ok(touristRouteDto);
         }
 
+        // https://localhost:7143/api/touristRoutes
         [HttpPost]
         public IActionResult CreateTouristRoute(
             [FromBody] TouristRouteForCreatingDto touristRouteForCreatingDto
@@ -93,6 +94,29 @@ namespace Expedia.API.Controllers
                 new { TouristRouteId = touristRouteDto.Id },
                 touristRouteDto
                 );
+        }
+
+        // https://localhost:7143/api/touristRoutes/{TouristRouteId}
+        [HttpPut("{TouristRouteId:Guid}", Name = "UpdateTouristRoute")]
+        public IActionResult UpdateTouristRoute(
+            [FromRoute] Guid TouristRouteId,
+            [FromBody] TouristRouteForUpdatingDto touristRouteForUpdatingDto
+            )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            {
+                return NotFound($"Tourist route not found {TouristRouteId}");
+            }
+
+            var touristRouteRepo = _touristRouteRepository.GetTouristRoute(TouristRouteId);
+            // 1. repo -> dto
+            // 2. update dto
+            // 3. dto -> repo (context updated, just need to commit)
+            _mapper.Map(touristRouteForUpdatingDto, touristRouteRepo);
+            // update
+            _touristRouteRepository.Save();
+
+            return NoContent();
         }
     }
 }

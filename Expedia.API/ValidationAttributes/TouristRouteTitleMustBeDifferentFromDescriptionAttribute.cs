@@ -10,13 +10,13 @@ namespace Expedia.API.ValidationAttributes
         protected override ValidationResult? IsValid(
             object? value, ValidationContext validationContext)
         {
-            var touristRouteDto = (TouristRouteForCreatingDto)validationContext.ObjectInstance;
+            var touristRouteDto = (TouristRouteForManipulationDto)validationContext.ObjectInstance;
 
             if (touristRouteDto.Title == touristRouteDto.Description)
             {
                 return new ValidationResult(
                     "Title must be different from Description",
-                    new[] { "TouristRouteForCreatingDto" }
+                    new[] { "TouristRouteForManipulationDto" }
                     );
             }
 
