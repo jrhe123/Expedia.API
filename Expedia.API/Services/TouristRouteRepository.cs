@@ -123,6 +123,11 @@ namespace Expedia.API.Services
         {
             _context.TouristRoutes.Remove(touristRoute);
         }
+
+        public void DeleteTouristRoutePicture(TouristRoutePicture touristRoutePicture)
+        {
+            _context.TouristRoutePictures.Remove(touristRoutePicture);
+        }
     }
 }
 

@@ -37,8 +37,11 @@ namespace Expedia.API.Services
 		// delete
 		void DeleteTouristRoute(TouristRoute touristRoute);
 
-		// save repo
-		bool Save();
+		// delete picture
+		void DeleteTouristRoutePicture(TouristRoutePicture touristRoutePicture);
+
+        // save repo
+        bool Save();
     }
 }
 

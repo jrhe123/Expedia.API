@@ -97,6 +97,31 @@ namespace Expedia.API.Controllers
                  touristRoutePictureDto
                 );
         }
+
+
+        // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
+        [HttpDelete("{PictureId}", Name = "DeleteTouristRoutePicture")]
+        public IActionResult DeleteTouristRoutePicture(
+            [FromRoute] Guid TouristRouteId,
+            [FromRoute] int PictureId
+            )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            {
+                return NotFound("tourist route no found");
+            }
+
+            var pictureFromRepo = _touristRouteRepository.GetPicutre(PictureId);
+            if (pictureFromRepo == null)
+            {
+                return NotFound($"tourist route picture no found {PictureId}");
+            }
+
+            _touristRouteRepository.DeleteTouristRoutePicture(pictureFromRepo);
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
     }
 }
 
