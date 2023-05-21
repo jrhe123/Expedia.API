@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bGXJZqnRxoH+SlWyzB7xAfy9ZW561XGaIrjncLLUegi5ZBUFirJK93329YUJkqgz5esYydO/5DKxsI8V6qxSpQ==",
+  "dgSpecHash": "FYxD4IR5PSTYgryHllkk7q3X9Xi6XxJewXXLn57I618oVYFF4gnXA5v1/lD8yzJCfZJ/4QgZz2XBBG0pS7Sjqw==",
   "success": true,
   "projectFilePath": "/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/Expedia.API.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "/Users/jiaronghe/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/jiaronghe/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.5/microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/microsoft.aspnetcore.jsonpatch/7.0.5/microsoft.aspnetcore.jsonpatch.7.0.5.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/7.0.5/microsoft.aspnetcore.mvc.newtonsoftjson.7.0.5.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

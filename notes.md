@@ -63,6 +63,13 @@
 ### Async & Await
 - void, Task, Task<T>, IAsyncEnumerable<T>
 
+### Authorization
+- SSO (session(server) & cookie) for k8s
+    - ForgeRock, Microsoft AM
+    - OpenAM, OpenIDM, OpenDJ
+- JWT (RSA)
+    - 
+
 ### Linq
 - IQueryable
 
@@ -77,7 +84,7 @@
 - AutoMapper.Extensions.Microsoft.DependencyInjection -> dto mapping
 - Microsoft.AspNetCore.JsonPatch -> "patch update" inputs
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson -> for json patch
-
+- Microsoft.AspNetCore.Authentication.JwtBearer -> jwt support
 
 ### Migrate db in terminal
 * install dotnet tool
