@@ -60,6 +60,9 @@
 - FromRoute
 - FromService
 
+### Async & Await
+- void, Task, Task<T>, IAsyncEnumerable<T>
+
 ### Linq
 - IQueryable
 

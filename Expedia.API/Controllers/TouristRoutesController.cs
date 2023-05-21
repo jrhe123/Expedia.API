@@ -34,7 +34,7 @@ namespace Expedia.API.Controllers
         // https://localhost:7143/api/touristRoutes?Keyword=xxx&Rating=largerThan3
         [HttpGet]
         [HttpHead]
-        public IActionResult GetTouristRoutes(
+        public async Task<IActionResult> GetTouristRoutes(
             [FromQuery] TouristRouteResourceParameters parameters
 
             // move it to "TouristRouteResourceParameters"
@@ -43,7 +43,7 @@ namespace Expedia.API.Controllers
             )
         {
             var touristRoutesFromRepo =
-                this._touristRouteRepository.GetTouristRoutes(
+                await this._touristRouteRepository.GetTouristRoutesAsync(
                     parameters.Keyword,
                     parameters.RatingOperator,
                     parameters.RatingValue
@@ -62,9 +62,9 @@ namespace Expedia.API.Controllers
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpGet("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
         [HttpHead("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
-        public IActionResult GetTouristRouteById(Guid TouristRouteId)
+        public async Task<IActionResult> GetTouristRouteById(Guid TouristRouteId)
         {
-            var touristRouteFromRepo = this._touristRouteRepository.GetTouristRoute(
+            var touristRouteFromRepo = await this._touristRouteRepository.GetTouristRouteAsync(
                 TouristRouteId
                 );
             if (touristRouteFromRepo == null)
@@ -78,7 +78,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes
         [HttpPost]
-        public IActionResult CreateTouristRoute(
+        public async Task<IActionResult> CreateTouristRoute(
             [FromBody] TouristRouteForCreatingDto touristRouteForCreatingDto
             )
         {
@@ -86,7 +86,7 @@ namespace Expedia.API.Controllers
                 touristRouteForCreatingDto);
 
             _touristRouteRepository.AddTouristRoute(touristRoute);
-            bool savedRepo = _touristRouteRepository.Save();
+            bool savedRepo = await _touristRouteRepository.SaveAsync();
 
             var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRoute);
             // Hatoas: in response header "Location", created resource in "GET"
@@ -100,40 +100,40 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpPut("{TouristRouteId:Guid}", Name = "UpdateTouristRoute")]
-        public IActionResult UpdateTouristRoute(
+        public async Task<IActionResult> UpdateTouristRoute(
             [FromRoute] Guid TouristRouteId,
             [FromBody] TouristRouteForUpdatingDto touristRouteForUpdatingDto
             )
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound($"Tourist route not found {TouristRouteId}");
             }
 
-            var touristRouteRepo = _touristRouteRepository.GetTouristRoute(TouristRouteId);
+            var touristRouteRepo = await _touristRouteRepository.GetTouristRouteAsync(TouristRouteId);
             // 1. repo -> dto
             // 2. update dto
             // 3. dto -> repo (context updated, just need to commit)
             _mapper.Map(touristRouteForUpdatingDto, touristRouteRepo);
             // update
-            _touristRouteRepository.Save();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpPatch("{TouristRouteId:Guid}", Name = "PartialUpdateTouristRoute")]
-        public IActionResult PartialUpdateTouristRoute(
+        public async Task<IActionResult> PartialUpdateTouristRoute(
             [FromRoute] Guid TouristRouteId,
             [FromBody] JsonPatchDocument<TouristRouteForUpdatingDto> PatchDocument
             )
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound($"Tourist route not found {TouristRouteId}");
             }
 
-            var touristRouteRepo = _touristRouteRepository.GetTouristRoute(
+            var touristRouteRepo = await _touristRouteRepository.GetTouristRouteAsync(
                 TouristRouteId);
             var touristRouteForUpdatingDto = _mapper.Map<TouristRouteForUpdatingDto>(
                 touristRouteRepo);
@@ -148,33 +148,33 @@ namespace Expedia.API.Controllers
             }
 
             _mapper.Map(touristRouteForUpdatingDto, touristRouteRepo);
-            _touristRouteRepository.Save();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }
 
 
         [HttpDelete("{TouristRouteId:Guid}", Name = "DeleteTouristRoute")]
-        public IActionResult DeleteTouristRoute(
+        public async Task<IActionResult> DeleteTouristRoute(
             [FromRoute] Guid TouristRouteId
             )
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound($"Tourist route not found {TouristRouteId}");
             }
 
-            var touristRouteRepo = _touristRouteRepository.GetTouristRoute(
+            var touristRouteRepo = await _touristRouteRepository.GetTouristRouteAsync(
                 TouristRouteId);
             _touristRouteRepository.DeleteTouristRoute(touristRouteRepo);
-            _touristRouteRepository.Save();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteIds}
         [HttpDelete("({TouristRouteIds})")]
-        public IActionResult DeleteByIds(
+        public async Task<IActionResult> DeleteByIds(
             // convert "guids" to array of guids
             [ModelBinder(BinderType = typeof(ArrayModelBinder))][FromRoute] IEnumerable<Guid> TouristRouteIds
             )
@@ -184,11 +184,11 @@ namespace Expedia.API.Controllers
                 return BadRequest();
             }
 
-            var touristRoutesFromRepo = _touristRouteRepository.GetTouristRoutesByIdList(
+            var touristRoutesFromRepo = await _touristRouteRepository.GetTouristRoutesByIdListAsync(
                 TouristRouteIds
                 );
             _touristRouteRepository.DeleteTouristRoutes(touristRoutesFromRepo);
-            _touristRouteRepository.Save();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }

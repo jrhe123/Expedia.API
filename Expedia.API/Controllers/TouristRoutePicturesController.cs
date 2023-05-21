@@ -28,14 +28,14 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures
         [HttpGet]
-        public IActionResult GetPictureListForTouristRoute(Guid TouristRouteId)
+        public async Task<IActionResult> GetPictureListForTouristRoute(Guid TouristRouteId)
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound("tourist route no found");
             }
 
-            var picturesFromRepo = _touristRouteRepository.GetPicutresByTouristRouteId(TouristRouteId);
+            var picturesFromRepo = await _touristRouteRepository.GetPicutresByTouristRouteIdAsync(TouristRouteId);
             if (picturesFromRepo == null || picturesFromRepo.Count() == 0)
             {
                 return NotFound("tourist route pictures no found");
@@ -48,14 +48,14 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
         [HttpGet("{PictureId}", Name = "GetPicture")]
-        public IActionResult GetPicture(Guid TouristRouteId, int PictureId)
+        public async Task<IActionResult> GetPicture(Guid TouristRouteId, int PictureId)
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound("tourist route no found");
             }
 
-            var pictureFromRepo = _touristRouteRepository.GetPicutre(PictureId);
+            var pictureFromRepo = await _touristRouteRepository.GetPicutreAsync(PictureId);
             if (pictureFromRepo == null)
             {
                 return NotFound($"tourist route picture no found {PictureId}");
@@ -67,12 +67,12 @@ namespace Expedia.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateTouristRoutePicture(
+        public async Task<IActionResult> CreateTouristRoutePicture(
             [FromRoute] Guid TouristRouteId,
             [FromBody] TouristRoutePictureForCreatingDto touristRoutePictureForCreatingDto
             )
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound("tourist route no found");
             }
@@ -83,7 +83,7 @@ namespace Expedia.API.Controllers
                 TouristRouteId,
                 touristRoutePicture
                 );
-            _touristRouteRepository.Save();
+            await _touristRouteRepository.SaveAsync();
 
             var touristRoutePictureDto = _mapper.Map<TouristRoutePictureDto>(
                 touristRoutePicture);
@@ -101,24 +101,24 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
         [HttpDelete("{PictureId}", Name = "DeleteTouristRoutePicture")]
-        public IActionResult DeleteTouristRoutePicture(
+        public async Task<IActionResult> DeleteTouristRoutePicture(
             [FromRoute] Guid TouristRouteId,
             [FromRoute] int PictureId
             )
         {
-            if (!_touristRouteRepository.TouristRouteExists(TouristRouteId))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
             {
                 return NotFound("tourist route no found");
             }
 
-            var pictureFromRepo = _touristRouteRepository.GetPicutre(PictureId);
+            var pictureFromRepo = await _touristRouteRepository.GetPicutreAsync(PictureId);
             if (pictureFromRepo == null)
             {
                 return NotFound($"tourist route picture no found {PictureId}");
             }
 
             _touristRouteRepository.DeleteTouristRoutePicture(pictureFromRepo);
-            _touristRouteRepository.Save();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }

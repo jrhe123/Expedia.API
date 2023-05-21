@@ -1,32 +1,33 @@
 ﻿using System;
 using Expedia.API.Models;
+using System.Threading.Tasks;
 
 namespace Expedia.API.Services
 {
 	public interface ITouristRouteRepository
 	{
-		// list
-		IEnumerable<TouristRoute> GetTouristRoutes(
+		// get list
+		Task<IEnumerable<TouristRoute>> GetTouristRoutesAsync(
 			string Keyword,
 			string RatingOperator,
 			int? RatingValue
             );
 
-		// get by id
-		TouristRoute GetTouristRoute(Guid TouristRouteId);
+        // get by id
+        Task<TouristRoute> GetTouristRouteAsync(Guid TouristRouteId);
 
-		// get by ids
-		IEnumerable<TouristRoute> GetTouristRoutesByIdList(IEnumerable<Guid> ids);
+        // get by ids
+        Task<IEnumerable<TouristRoute>> GetTouristRoutesByIdListAsync(IEnumerable<Guid> ids);
 
-		// check if exists
-		bool TouristRouteExists(Guid TouristRouteId);
+        // check if exists
+        Task<bool> TouristRouteExistsAsync(Guid TouristRouteId);
 
-		// get pictures
-		IEnumerable<TouristRoutePicture> GetPicutresByTouristRouteId
+        // get pictures
+        Task<IEnumerable<TouristRoutePicture>> GetPicutresByTouristRouteIdAsync
 			(Guid TouristRouteId);
 
         // get picture by pic id
-        TouristRoutePicture GetPicutre(int PictureId);
+        Task<TouristRoutePicture> GetPicutreAsync(int PictureId);
 
 		// create
 		void AddTouristRoute(TouristRoute touristRoute);
@@ -47,7 +48,7 @@ namespace Expedia.API.Services
         void DeleteTouristRoutePicture(TouristRoutePicture touristRoutePicture);
 
         // save repo
-        bool Save();
+        Task<bool> SaveAsync();
     }
 }
 
