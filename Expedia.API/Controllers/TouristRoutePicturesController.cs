@@ -69,6 +69,7 @@ namespace Expedia.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateTouristRoutePicture(
             [FromRoute] Guid TouristRouteId,
@@ -104,6 +105,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1
         [HttpDelete("{PictureId}", Name = "DeleteTouristRoutePicture")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTouristRoutePicture(
             [FromRoute] Guid TouristRouteId,

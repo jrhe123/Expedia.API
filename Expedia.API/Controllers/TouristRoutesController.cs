@@ -79,6 +79,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateTouristRoute(
             [FromBody] TouristRouteForCreatingDto touristRouteForCreatingDto
@@ -102,6 +103,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpPut("{TouristRouteId:Guid}", Name = "UpdateTouristRoute")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateTouristRoute(
             [FromRoute] Guid TouristRouteId,
@@ -126,6 +128,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpPatch("{TouristRouteId:Guid}", Name = "PartialUpdateTouristRoute")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PartialUpdateTouristRoute(
             [FromRoute] Guid TouristRouteId,
@@ -159,6 +162,7 @@ namespace Expedia.API.Controllers
 
 
         [HttpDelete("{TouristRouteId:Guid}", Name = "DeleteTouristRoute")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTouristRoute(
             [FromRoute] Guid TouristRouteId
@@ -179,6 +183,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteIds}
         [HttpDelete("({TouristRouteIds})")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteByIds(
             // convert "guids" to array of guids
