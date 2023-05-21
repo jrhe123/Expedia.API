@@ -19,6 +19,8 @@ namespace Expedia.API.Dtos
         public TravelDays? TravelDays { get; set; }
         public TripType? TripType { get; set; }
         public DepartureCity DepartureCity { get; set; }
+        public ICollection<TouristRoutePictureForCreatingDto> TouristRoutePictures { get; set; }
+            = new List<TouristRoutePictureForCreatingDto>();
     }
 }
 
