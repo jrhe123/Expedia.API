@@ -11,6 +11,7 @@ using Expedia.API.ResourceParameters;
 using Expedia.API.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Expedia.API.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Expedia.API.Controllers
 {
@@ -78,6 +79,7 @@ namespace Expedia.API.Controllers
 
         // https://localhost:7143/api/touristRoutes
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateTouristRoute(
             [FromBody] TouristRouteForCreatingDto touristRouteForCreatingDto
             )

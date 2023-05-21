@@ -6,10 +6,22 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
     "DbContext:ConnectionString"
+    );
+var jwtSecretKey = builder.Configuration.GetValue<string>(
+    "Authenitication:SecretKey"
+    );
+var jwtValidIssuer = builder.Configuration.GetValue<string>(
+    "Authenitication:Issuer"
+    );
+var jwtValidAudience = builder.Configuration.GetValue<string>(
+    "Authenitication:Audience"
     );
 
 //var mysqlConnectionString = builder.Configuration.GetValue<string>(
@@ -86,6 +98,22 @@ builder.Services.AddAutoMapper(
     AppDomain.CurrentDomain.GetAssemblies()
     );
 
+// jwt
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var secretByte = Encoding.UTF8.GetBytes(jwtSecretKey);
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwtValidIssuer,
+            ValidateAudience = true,
+            ValidAudience = jwtValidAudience,
+            ValidateLifetime = true,
+            IssuerSigningKey = new SymmetricSecurityKey(secretByte)
+        };
+    });
+
 
 //
 var app = builder.Build();
@@ -103,6 +131,10 @@ if (app.Environment.IsDevelopment())
 // e.g., UseRouting <-> UseEndpoints
 // deprecated version
 app.UseRouting();
+
+// enable jwt
+app.UseAuthentication();
+app.UseAuthorization();
 
 // mvc
 app.MapControllers();
