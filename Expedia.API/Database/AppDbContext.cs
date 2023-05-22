@@ -122,6 +122,7 @@ namespace Expedia.API.Database
 		public DbSet<TouristRoutePicture> TouristRoutePictures { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
 

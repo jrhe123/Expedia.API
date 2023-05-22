@@ -13,9 +13,7 @@ namespace Expedia.API.Models
         public virtual ICollection<IdentityUserToken<string>> Tokens { get; set; }
 
         public ShoppingCart ShoppingCart { get; set; }
-
-        // shopping cart
-        // orders
+        public ICollection<Order> Orders { get; set; }
     }
 }
 
