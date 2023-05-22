@@ -51,6 +51,7 @@ namespace Expedia.API.Controllers
                 ResourceUriType.PreviousPage => _urlHelper.Link("GetTouristRoutes",
                     new
                     {
+                        orderBy = parameters.OrderBy,
                         keyword = parameters.Keyword,
                         rating = parameters.Rating,
                         pageNumber = parameters2.PageNumber - 1,
@@ -59,6 +60,7 @@ namespace Expedia.API.Controllers
                 ResourceUriType.NextPage => _urlHelper.Link("GetTouristRoutes",
                     new
                     {
+                        orderBy = parameters.OrderBy,
                         keyword = parameters.Keyword,
                         rating = parameters.Rating,
                         pageNumber = parameters2.PageNumber + 1,
@@ -67,6 +69,7 @@ namespace Expedia.API.Controllers
                 _ => _urlHelper.Link("GetTouristRoutes",
                     new
                     {
+                        orderBy = parameters.OrderBy,
                         keyword = parameters.Keyword,
                         rating = parameters.Rating,
                         pageNumber = parameters2.PageNumber,
