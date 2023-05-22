@@ -102,6 +102,11 @@ namespace Expedia.API.Controllers
             {
                 return BadRequest("OrderBy is invalid");
             }
+            if (!_propertyMappingService
+                .IsPropertiesExists<TouristRouteDto>(parameters.Fields))
+            {
+                return BadRequest("Fields is invalid");
+            }
 
             var touristRoutesFromRepo =
                 await this._touristRouteRepository.GetTouristRoutesAsync(
@@ -152,8 +157,17 @@ namespace Expedia.API.Controllers
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpGet("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
         [HttpHead("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
-        public async Task<IActionResult> GetTouristRouteById(Guid TouristRouteId)
+        public async Task<IActionResult> GetTouristRouteById(
+            Guid TouristRouteId,
+            string? Fields
+            )
         {
+            if (!_propertyMappingService
+                .IsPropertiesExists<TouristRouteDto>(Fields))
+            {
+                return BadRequest("Fields is invalid");
+            }
+
             var touristRouteFromRepo = await this._touristRouteRepository.GetTouristRouteAsync(
                 TouristRouteId
                 );
@@ -163,7 +177,9 @@ namespace Expedia.API.Controllers
             }
             var touristRouteDto = _mapper.Map<TouristRouteDto>(
                 touristRouteFromRepo);
-            return Ok(touristRouteDto);
+            return Ok(
+                touristRouteDto.ShapeData(Fields)
+                );
         }
 
         // https://localhost:7143/api/touristRoutes

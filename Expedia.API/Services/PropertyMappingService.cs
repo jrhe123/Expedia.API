@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Expedia.API.Dtos;
 using Expedia.API.Models;
 
@@ -66,6 +67,32 @@ namespace Expedia.API.Services
                     return false;
                 }
             }
+            return true;
+        }
+
+        public bool IsPropertiesExists<T>(string fields)
+        {
+            if (string.IsNullOrWhiteSpace(fields))
+            {
+                return true;
+            }
+
+            var fieldsAfterSplit = fields.Split(",");
+            foreach (var filed in fieldsAfterSplit)
+            {
+                var propertyName = filed.Trim();
+                var propertyInfo = typeof(T).GetProperty(
+                    propertyName,
+                    BindingFlags.IgnoreCase |
+                    BindingFlags.Public |
+                    BindingFlags.Instance
+                    );
+                if (propertyInfo == null)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
     }
