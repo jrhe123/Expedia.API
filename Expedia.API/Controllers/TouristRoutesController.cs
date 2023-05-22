@@ -153,6 +153,63 @@ namespace Expedia.API.Controllers
                 );
         }
 
+        private IEnumerable<LinkDto> CreateLinkForTouristRoute(
+            Guid TouristRouteId,
+            string? Fields
+        )
+        {
+            var links = new List<LinkDto>();
+
+            links.Add(
+                new LinkDto(
+                    Url.Link("GetTouristRouteById", new { TouristRouteId, Fields }),
+                    "self",
+                    "GET"
+                    )
+                );
+            // UPDATE
+            links.Add(
+                new LinkDto(
+                    Url.Link("UpdateTouristRoute", new { TouristRouteId }),
+                    "update",
+                    "PUT"
+                    )
+                );
+            // PARTIAL UPDATE
+            links.Add(
+                new LinkDto(
+                    Url.Link("PartiallyUpdateTouristRoute", new { TouristRouteId }),
+                    "partially_update",
+                    "PATCH"
+                    )
+                );
+            // DELETE
+            links.Add(
+                new LinkDto(
+                    Url.Link("DeleteTouristRoute", new { TouristRouteId }),
+                    "delete",
+                    "DELETE"
+                    )
+                );
+            // GET PICTURE
+            links.Add(
+                new LinkDto(
+                    Url.Link("GetPictureListForTouristRoute", new { TouristRouteId }),
+                    "get_pictures",
+                    "GET"
+                    )
+                );
+            // CREATE PICTURE
+            links.Add(
+                new LinkDto(
+                    Url.Link("CreateTouristRoutePicture", new { TouristRouteId }),
+                    "create_picture",
+                    "POST"
+                    )
+                );
+
+            return links;
+        }
 
         // https://localhost:7143/api/touristRoutes/{TouristRouteId}
         [HttpGet("{TouristRouteId:Guid}", Name = "GetTouristRouteById")]
@@ -177,9 +234,15 @@ namespace Expedia.API.Controllers
             }
             var touristRouteDto = _mapper.Map<TouristRouteDto>(
                 touristRouteFromRepo);
-            return Ok(
-                touristRouteDto.ShapeData(Fields)
-                );
+
+            // HATEOAS links
+            var linkDtos = CreateLinkForTouristRoute(TouristRouteId, Fields);
+
+            var result = touristRouteDto.ShapeData(Fields)
+                as IDictionary<string, object>;
+            result.Add("links", linkDtos);
+
+            return Ok(result);
         }
 
         // https://localhost:7143/api/touristRoutes

@@ -29,7 +29,7 @@ namespace Expedia.API.Controllers
 
 
         // https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures
-        [HttpGet]
+        [HttpGet(Name = "GetPictureListForTouristRoute")]
         public async Task<IActionResult> GetPictureListForTouristRoute(Guid TouristRouteId)
         {
             if (!(await _touristRouteRepository.TouristRouteExistsAsync(TouristRouteId)))
@@ -68,7 +68,7 @@ namespace Expedia.API.Controllers
                 );
         }
 
-        [HttpPost]
+        [HttpPost(Name = "CreateTouristRoutePicture")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateTouristRoutePicture(

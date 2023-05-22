@@ -10,10 +10,10 @@ namespace Expedia.API.Services
         private Dictionary<string, PropertyMappingValue> _touristRoutePropertyMapping =
             new Dictionary<string, PropertyMappingValue>(StringComparer.OrdinalIgnoreCase)
             {
-                {"Id", new PropertyMappingValue(new List<string>(){"Id"}) },
-                {"Title", new PropertyMappingValue(new List<string>(){"Title"}) },
-                {"Rating", new PropertyMappingValue(new List<string>(){"Rating"}) },
-                {"OriginalPrice", new PropertyMappingValue(new List<string>(){"OriginalPrice"}) },
+                //{"Id", new PropertyMappingValue(new List<string>(){"Id"}) },
+                //{"Title", new PropertyMappingValue(new List<string>(){"Title"}) },
+                //{"Rating", new PropertyMappingValue(new List<string>(){"Rating"}) },
+                //{"OriginalPrice", new PropertyMappingValue(new List<string>(){"OriginalPrice"}) },
             };
 
         public PropertyMappingService()
