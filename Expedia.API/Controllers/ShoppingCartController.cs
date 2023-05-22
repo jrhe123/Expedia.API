@@ -29,7 +29,7 @@ namespace Expedia.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetShoppingCart")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> GetShoppingCart()
         {

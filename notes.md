@@ -35,6 +35,7 @@
     - Accept
         - application/xml
         - application/json
+        - (custom) application/vnd.{companyName}.hateoas+json
     - Content-Type
 - Patch (e.g.,)
     - add

@@ -134,6 +134,18 @@ builder.Services.AddSingleton<
 // property mapping service for custom "order by fields"
 builder.Services.AddTransient<IPropertyMappingService, PropertyMappingService>();
 
+// add custom Accept type "application/vnd.roytest.hateoas+json"
+builder.Services.Configure<MvcOptions>(config =>
+{
+    var outputFormatter = config.OutputFormatters
+        .OfType<NewtonsoftJsonOutputFormatter>()?.FirstOrDefault();
+    if (outputFormatter != null)
+    {
+        outputFormatter.SupportedMediaTypes
+            .Add("application/vnd.roytest.hateoas+json");
+    }
+});
+
 //
 var app = builder.Build();
 

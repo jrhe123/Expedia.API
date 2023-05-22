@@ -28,7 +28,7 @@ namespace Expedia.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetOrders")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> GetOrders(
             [FromQuery] PaginationResourceParameters parameters
