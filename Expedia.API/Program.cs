@@ -131,6 +131,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddSingleton<
     IActionContextAccessor, ActionContextAccessor>();
 
+// property mapping service for custom "order by fields"
+builder.Services.AddTransient<IPropertyMappingService, PropertyMappingService>();
+
 //
 var app = builder.Build();
 

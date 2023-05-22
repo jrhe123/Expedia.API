@@ -87,6 +87,7 @@
 - Microsoft.AspNetCore.Authentication.JwtBearer -> jwt support
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore -> user entity
 - stateless -> order state
+- System.Linq.Dynamic.Core -> for linq dynamic mapping orderBy (fields) from dto
 
 ### Migrate db in terminal
 * install dotnet tool

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Expedia.API.Database;
+using Expedia.API.Dtos;
 using Expedia.API.Helpers;
 using Expedia.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +11,14 @@ namespace Expedia.API.Services
 	public class TouristRouteRepository: ITouristRouteRepository
 	{
         private readonly AppDbContext _context;
+        private readonly IPropertyMappingService _propertyMappingService;
 
-		public TouristRouteRepository(AppDbContext context)
+
+        public TouristRouteRepository(
+            AppDbContext context, IPropertyMappingService propertyMappingService)
 		{
             _context = context;
+            _propertyMappingService = propertyMappingService;
         }
 
         public async Task<PaginationList<TouristRoute>> GetTouristRoutesAsync(
@@ -21,7 +26,8 @@ namespace Expedia.API.Services
             string RatingOperator,
             int? RatingValue,
             int PageSize,
-            int PageNumber
+            int PageNumber,
+            string OrderBy
         )
         {
             // return _context.TouristRoutes;
@@ -61,6 +67,22 @@ namespace Expedia.API.Services
             //result = result.Skip(skip);
             //result = result.Take(PageSize);
             // include / join
+
+
+            // orderBy=originalPrice desc, id asc
+            if (!string.IsNullOrWhiteSpace(OrderBy))
+            {
+                //OrderBy = OrderBy.Trim();
+                //if (OrderBy.ToLowerInvariant() == "originalprice")
+                //{
+                //    result = result.OrderBy(t => t.OriginalPrice);
+                //}
+
+                var touristRouteMappingDictionary = _propertyMappingService
+                    .GetPropertyMapping<TouristRouteDto, TouristRoute>();
+
+                result = result.ApplySort(OrderBy, touristRouteMappingDictionary);
+            }
 
             return await PaginationList<TouristRoute>.CreateAsync(
                 PageNumber, PageSize, result

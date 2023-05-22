@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WNMMD73WqvBBJ+RUvKsydsopymI8AXCLQSJ7e7xUeo82PKLMbZKCb8B1rY1jSCk5H03aSgqbQkQkxls6ILfcWw==",
+  "dgSpecHash": "3tj/1o/Q54mjfq6mNiUKkPCztrmhSKjwHJ9GyxcHZ9Y6hvaGMGqfwfIP4wlmyZDsy2DAGpnKnl/kSjt604td2Q==",
   "success": true,
   "projectFilePath": "/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/Expedia.API.csproj",
   "expectedPackageFiles": [
@@ -66,6 +66,7 @@
     "/Users/jiaronghe/.nuget/packages/system.globalization/4.3.0/system.globalization.4.3.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.identitymodel.tokens.jwt/6.21.0/system.identitymodel.tokens.jwt.6.21.0.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
+    "/Users/jiaronghe/.nuget/packages/system.linq.dynamic.core/1.3.2/system.linq.dynamic.core.1.3.2.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
     "/Users/jiaronghe/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",

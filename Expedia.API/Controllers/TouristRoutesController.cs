@@ -93,7 +93,8 @@ namespace Expedia.API.Controllers
                     parameters.RatingOperator,
                     parameters.RatingValue,
                     parameters2.PageSize,
-                    parameters2.PageNumber
+                    parameters2.PageNumber,
+                    parameters.OrderBy
                     );
             if (touristRoutesFromRepo == null ||
                 touristRoutesFromRepo.Count() == 0)

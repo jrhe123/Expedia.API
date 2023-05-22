@@ -31,7 +31,7 @@ namespace Expedia.API.ResourceParameters
         public string? RatingOperator { get; set; }
         public int? RatingValue { get; set; }
 
-        
+        public string? OrderBy { get; set; }
 		
     }
 }

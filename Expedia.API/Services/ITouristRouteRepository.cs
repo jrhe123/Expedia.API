@@ -13,7 +13,8 @@ namespace Expedia.API.Services
 			string RatingOperator,
 			int? RatingValue,
             int PageSize,
-            int PageNumber
+            int PageNumber,
+            string OrderBy
             );
 
         // get by id

@@ -10,6 +10,8 @@ namespace Expedia.API.Dtos
         public string Description { get; set; }
         // Price = OriginalPrice * (1 - DiscountPercent)
         public decimal Price { get; set; }
+        public decimal OriginalPrice { get; set; }
+        public double? DiscountPercent { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
         public DateTime? DepartureTime { get; set; }
