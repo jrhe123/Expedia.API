@@ -1,0 +1,732 @@
+{
+	"info": {
+		"_postman_id": "d5ee22c1-0e6b-445a-b863-b3d279eed3ee",
+		"name": "Expedia.API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2637368"
+	},
+	"item": [
+		{
+			"name": "api/touristRoutes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes?orderBy=originalPrice desc&Fields=id",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes"
+					],
+					"query": [
+						{
+							"key": "Keyword",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "Rating",
+							"value": "largerThan1",
+							"disabled": true
+						},
+						{
+							"key": "orderBy",
+							"value": "originalPrice desc"
+						},
+						{
+							"key": "Fields",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.roytest.hateoas+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes?Fields=id,title",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes"
+					],
+					"query": [
+						{
+							"key": "Keyword",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "Rating",
+							"value": "largerThan1",
+							"disabled": true
+						},
+						{
+							"key": "Fields",
+							"value": "id,title"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes?PageNumber=1&PageSize=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes"
+					],
+					"query": [
+						{
+							"key": "PageNumber",
+							"value": "1"
+						},
+						{
+							"key": "PageSize",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYjZkNGYxMC03OWVkLTRhZmYtYTkxNS00Y2UyOWRjOWM3ZTAiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIm5iZiI6MTY4NDcwODA4MSwiZXhwIjoxNjg1MzEyODgxLCJpc3MiOiJoZWppYXJvbmcuY2EiLCJhdWQiOiJoZWppYXJvbmcuY2EifQ.kZKuHzqLuuxRd2uphYXvc-LqL3k_hlu40Mc2L6un2iA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"this is title from postman 6\",\n    \"description\": \"this is description\",\n    \"originalPrice\": 20000,\n    \"discountPercent\": 0.95,\n    \"coupons\": null,\n    \"points\": 220,\n    \"touristRoutePictures\": [\n        {\n            \"url\": \"../../assets/images/14.jpg\"\n        },\n        {\n            \"url\": \"../../assets/images/15.jpg\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1?Fields=id,title",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1"
+					],
+					"query": [
+						{
+							"key": "Fields",
+							"value": "id,title"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"this is title 1 updated 2\",\n    \"description\": \"this is title 1 updated 2\",\n    \"price\": 19.9999,\n    \"createTime\": \"0001-01-01T00:00:00\",\n    \"updateTime\": null,\n    \"departureTime\": null,\n    \"features\": \"<div class\\\"bd\\\"><p style=\\\"text-align:center\\\"><span>features </span><strong></strong></p></div>\",\n    \"fees\": \"<div class\\\"bd\\\"><dl class=\\\"mod_info_box\\\"><dt>fee includes: 1</dt><dd><div>123</div></dd></dl></div>\",\n    \"notes\": \"<div class\\\"bd\\\"><dl class=\\\"mod_info_box\\\"><dt>notes includes: 1</dt><dd><div>321</div></dd></dl></div>\",\n    \"rating\": 3.5,\n    \"touristRoutePictures\": [\n        {\n            \"id\": 1,\n            \"url\": \"../../assets/images/1.jpg\",\n            \"touristRouteId\": \"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1\"\n        },\n        {\n            \"id\": 2,\n            \"url\": \"../../assets/images/2.jpg\",\n            \"touristRouteId\": \"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1\"\n        },\n        {\n            \"id\": 3,\n            \"url\": \"../../assets/images/3.jpg\",\n            \"touristRouteId\": \"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1\"\n        },\n        {\n            \"id\": 4,\n            \"url\": \"../../assets/images/4.jpg\",\n            \"touristRouteId\": \"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1\"\n        },\n        {\n            \"id\": 10,\n            \"url\": \"../../assets/images/11.jpg\",\n            \"touristRouteId\": \"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/{id}",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/title\",\n        \"value\": \"this is title 1 updated from PATCH2\"\n    },\n    {\n        \"op\": \"replace\",\n        \"path\": \"/description\",\n        \"value\": \"this is title 1 updated from PATCH2\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/{ids}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/(af4164ea-b21a-4af9-9e6a-861544bc24ff, 0e8eb2bd-93b5-44ea-b4c7-588b1a044e66)",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"(af4164ea-b21a-4af9-9e6a-861544bc24ff, 0e8eb2bd-93b5-44ea-b4c7-588b1a044e66)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+						"pictures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"../../assets/images/11.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+						"pictures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/23",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+						"pictures",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7143/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1/pictures/23",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"touristRoutes",
+						"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+						"pictures",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"roy@test3.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"roy@test3.com\",\n    \"password\": \"123456\",\n    \"confirmPassword\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/auth/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/shoppingCart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7143/api/shoppingCart",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"shoppingCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/shoppingCart/items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TouristRouteId\": \"684cc76b-4414-42a5-8e9d-8909517d6255\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/shoppingCart/items",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"shoppingCart",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/shoppingCart/items/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TouristRouteId\": \"cc407c6a-83e0-4b8a-8d24-291ad3ab274e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/shoppingCart/items/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"shoppingCart",
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/shoppingCart/items/(2,3)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TouristRouteId\": \"cc407c6a-83e0-4b8a-8d24-291ad3ab274e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/shoppingCart/items/(2,3)",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"shoppingCart",
+						"items",
+						"(2,3)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/shoppingCart/checkout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7143/api/shoppingCart/checkout",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"shoppingCart",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7143/api/orders?PageNumber=1&PageSize=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "PageNumber",
+							"value": "1"
+						},
+						{
+							"key": "PageSize",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/orders/02297982-f37a-4434-b8ab-a2c1445d8ce5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZWIyZDQ1NS1kMzEzLTRmZjUtOWMxYy03Yjg3MmIyZDVkYWEiLCJuYmYiOjE2ODQ3MjAyNTIsImV4cCI6MTY4NTMyNTA1MiwiaXNzIjoiaGVqaWFyb25nLmNhIiwiYXVkIjoiaGVqaWFyb25nLmNhIn0.TQWYop37FVS328QNJkSwm4xbIozHoQsct0IiVE9hAa0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7143/api/orders/02297982-f37a-4434-b8ab-a2c1445d8ce5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api",
+						"orders",
+						"02297982-f37a-4434-b8ab-a2c1445d8ce5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7143/api",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7143",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
