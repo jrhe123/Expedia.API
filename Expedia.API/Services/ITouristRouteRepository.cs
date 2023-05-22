@@ -75,6 +75,12 @@ namespace Expedia.API.Services
 
         // add order
         Task AddOrderAsync(Order order);
+
+        // get orders by user id
+        Task<IEnumerable<Order>> GetOrdersByUserIdAsync(string userId);
+
+        // get order by order id
+        Task<Order> GetOrderByIdAsync(Guid orderId);
     }
 }
 

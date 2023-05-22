@@ -147,8 +147,7 @@ namespace Expedia.API.Services
         {
             return await _context.ShoppingCarts
                 .Include(s => s.User)
-                .Include(s => s.ShoppingCartItems)
-                .ThenInclude(li => li.TouristRoute)
+                .Include(s => s.ShoppingCartItems).ThenInclude(li => li.TouristRoute)
                 .Where(s => s.UserId == userId)
                 .FirstOrDefaultAsync();
         }
@@ -189,6 +188,20 @@ namespace Expedia.API.Services
         public async Task AddOrderAsync(Order order)
         {
             await _context.Orders.AddAsync(order);
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(string userId)
+        {
+            return await _context.Orders.Where(item => item.UserId == userId)
+                .ToListAsync();
+        }
+
+        public async Task<Order> GetOrderByIdAsync(Guid orderId)
+        {
+            return await _context.Orders
+                .Include(o => o.OrderItems).ThenInclude(oi => oi.TouristRoute)
+                .Where(o => o.Id == orderId)
+                .FirstOrDefaultAsync();
         }
     }
 }
