@@ -58,6 +58,10 @@ namespace Expedia.API.Services
         Task CreateShoppingCartAsync(ShoppingCart shoppingCart);
 
         Task AddShoppingCartItemAsync(LineItem lineItem);
+
+        Task<LineItem> GetShoppingCartItemByItemIdAsync(int lineItemId);
+
+        void DeleteShoppingCartItem(LineItem lineItem);
     }
 }
 

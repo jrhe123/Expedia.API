@@ -30,7 +30,8 @@ namespace Expedia.API.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<IActionResult> GetShoppingCart() {
+        public async Task<IActionResult> GetShoppingCart()
+        {
 
             // 1. get user from context
             var userId = _httpContextAccessor.HttpContext.User
@@ -43,7 +44,7 @@ namespace Expedia.API.Controllers
 
             return Ok(
                 _mapper.Map<ShoppingCartDto>(shoppingCart)
-                ) ;
+                );
         }
 
         [HttpPost("items")]
@@ -84,6 +85,26 @@ namespace Expedia.API.Controllers
                 _mapper.Map<ShoppingCartDto>(shoppingCart)
                 );
         }
-	}
-}
 
+
+        [HttpDelete("items/{ItemId}")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> DeleteShoppingCartItem(
+            [FromRoute] int ItemId
+            )
+        {
+            var lineItem = await _touristRouteRepository
+                .GetShoppingCartItemByItemIdAsync(ItemId);
+            if (lineItem == null)
+            {
+                return NotFound($"Line item not found {ItemId}");
+            }
+
+            _touristRouteRepository.DeleteShoppingCartItem(lineItem);
+            await _touristRouteRepository.SaveAsync();
+
+            return NoContent();
+        }
+    }
+
+}
