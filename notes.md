@@ -86,6 +86,7 @@
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson -> for json patch
 - Microsoft.AspNetCore.Authentication.JwtBearer -> jwt support
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore -> user entity
+- stateless -> order state
 
 ### Migrate db in terminal
 * install dotnet tool
