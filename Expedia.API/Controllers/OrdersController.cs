@@ -3,6 +3,7 @@ using System.Security.Claims;
 using AutoMapper;
 using Expedia.API.Dtos;
 using Expedia.API.Models;
+using Expedia.API.ResourceParameters;
 using Expedia.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,9 @@ namespace Expedia.API.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<IActionResult> GetOrders()
+        public async Task<IActionResult> GetOrders(
+            [FromQuery] PaginationResourceParameters parameters
+            )
         {
             // 1. get user from context
             var userId = _httpContextAccessor.HttpContext.User
@@ -37,7 +40,8 @@ namespace Expedia.API.Controllers
                 .Value;
 
             // 2. get user orders
-            var orders = await _touristRouteRepository.GetOrdersByUserIdAsync(userId);
+            var orders = await _touristRouteRepository.GetOrdersByUserIdAsync(
+                userId, parameters.PageSize, parameters.PageNumber);
             if (orders == null)
             {
                 return NotFound("no orders found");

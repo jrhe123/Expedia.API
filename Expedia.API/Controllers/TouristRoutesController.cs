@@ -36,7 +36,8 @@ namespace Expedia.API.Controllers
         [HttpGet]
         [HttpHead]
         public async Task<IActionResult> GetTouristRoutes(
-            [FromQuery] TouristRouteResourceParameters parameters
+            [FromQuery] TouristRouteResourceParameters parameters,
+            [FromQuery] PaginationResourceParameters parameters2
 
             // move it to "TouristRouteResourceParameters"
             //[FromQuery(Name = "Keyword")] string Keyword,
@@ -48,8 +49,8 @@ namespace Expedia.API.Controllers
                     parameters.Keyword,
                     parameters.RatingOperator,
                     parameters.RatingValue,
-                    parameters.PageSize,
-                    parameters.PageNumber
+                    parameters2.PageSize,
+                    parameters2.PageNumber
                     );
             if (touristRoutesFromRepo == null ||
                 touristRoutesFromRepo.Count() == 0)
