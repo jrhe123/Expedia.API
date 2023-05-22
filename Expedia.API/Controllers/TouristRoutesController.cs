@@ -54,6 +54,7 @@ namespace Expedia.API.Controllers
                 ResourceUriType.PreviousPage => _urlHelper.Link("GetTouristRoutes",
                     new
                     {
+                        fields = parameters.Fields,
                         orderBy = parameters.OrderBy,
                         keyword = parameters.Keyword,
                         rating = parameters.Rating,
@@ -63,6 +64,7 @@ namespace Expedia.API.Controllers
                 ResourceUriType.NextPage => _urlHelper.Link("GetTouristRoutes",
                     new
                     {
+                        fields = parameters.Fields,
                         orderBy = parameters.OrderBy,
                         keyword = parameters.Keyword,
                         rating = parameters.Rating,
@@ -72,6 +74,7 @@ namespace Expedia.API.Controllers
                 _ => _urlHelper.Link("GetTouristRoutes",
                     new
                     {
+                        fields = parameters.Fields,
                         orderBy = parameters.OrderBy,
                         keyword = parameters.Keyword,
                         rating = parameters.Rating,
@@ -141,7 +144,7 @@ namespace Expedia.API.Controllers
                 Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata)
             );
             return Ok(
-                touristRoutesDto
+                touristRoutesDto.ShapeData(parameters.Fields)
                 );
         }
 

@@ -68,10 +68,14 @@
     - ForgeRock, Microsoft AM
     - OpenAM, OpenIDM, OpenDJ
 - JWT (RSA)
-    - 
+    -
+
+### Dynamic fields returns
+- ExpandoObject
 
 ### Linq
 - IQueryable
+- System.Linq.Dynamic.Core (sorting dynamic fields)
 
 ### Log
 - Console.WriteLine("+++++ Keyword: " + Keyword);
