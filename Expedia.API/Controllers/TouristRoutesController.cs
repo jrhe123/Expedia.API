@@ -262,10 +262,16 @@ namespace Expedia.API.Controllers
             var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRoute);
             // Hatoas: in response header "Location", created resource in "GET"
             // e.g., https://localhost:7143/api/TouristRoutes/af4164ea-b21a-4af9-9e6a-861544bc24ff
+
+            var linkDtos = CreateLinkForTouristRoute(touristRouteDto.Id, null);
+            var result = touristRouteDto.ShapeData(null)
+                as IDictionary<string, object>;
+            result.Add("links", linkDtos);
+
             return CreatedAtRoute(
                 "GetTouristRouteById",
                 new { TouristRouteId = touristRouteDto.Id },
-                touristRouteDto
+                result
                 );
         }
 
