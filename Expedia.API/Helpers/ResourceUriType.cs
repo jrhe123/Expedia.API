@@ -5,6 +5,7 @@ namespace Expedia.API.Helpers
 	{
 		PreviousPage,
 		NextPage,
+		CurrentPage,
 	}
 }
 

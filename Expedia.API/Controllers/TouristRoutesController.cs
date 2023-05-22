@@ -84,6 +84,33 @@ namespace Expedia.API.Controllers
             };
         }
 
+        private IEnumerable<LinkDto> CreateLinksForTouristRouteList(
+            TouristRouteResourceParameters parameters,
+            PaginationResourceParameters parameters2
+            )
+        {
+            var links = new List<LinkDto>();
+            // self
+            links.Add(
+                new LinkDto(
+                    GenerateTouristRouteResourceURL(
+                        parameters, parameters2, ResourceUriType.CurrentPage
+                    ),
+                    "self",
+                    "GET"
+                    )
+                );
+            // create CreateTouristRoute
+            links.Add(
+                new LinkDto(
+                    Url.Link("CreateTouristRoute", null),
+                    "create_tourist_route",
+                    "POST"
+                    )
+                );
+            return links;
+        }
+
         // https://localhost:7143/api/touristRoutes?Keyword=xxx&Rating=largerThan3
         [HttpGet(Name = "GetTouristRoutes")]
         [HttpHead]
@@ -148,9 +175,24 @@ namespace Expedia.API.Controllers
                 "x-pagination",
                 Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata)
             );
-            return Ok(
-                touristRoutesDto.ShapeData(parameters.Fields)
-                );
+
+            var shapedDtoList = touristRoutesDto.ShapeData(parameters.Fields);
+            var linkDto = CreateLinksForTouristRouteList(parameters, parameters2);
+
+            var shapedDtoWithLinkList = shapedDtoList.Select(t =>
+            {
+                var touristRouteDict = t as IDictionary<string, object>;
+                var links = CreateLinkForTouristRoute((Guid)touristRouteDict["Id"], null);
+                touristRouteDict.Add("links", links);
+                return touristRouteDict;
+            });
+
+            var result = new
+            {
+                value = shapedDtoWithLinkList,
+                links = linkDto
+            };
+            return Ok(result);
         }
 
         private IEnumerable<LinkDto> CreateLinkForTouristRoute(
@@ -246,7 +288,7 @@ namespace Expedia.API.Controllers
         }
 
         // https://localhost:7143/api/touristRoutes
-        [HttpPost]
+        [HttpPost(Name = "CreateTouristRoute")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateTouristRoute(
