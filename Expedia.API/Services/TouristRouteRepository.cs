@@ -140,6 +140,23 @@ namespace Expedia.API.Services
             // delete many
             _context.TouristRoutes.RemoveRange(touristRoutes);
         }
+
+
+        //=============================
+        public async Task<ShoppingCart> GetShoppingCartByUserIdAsync(string userId)
+        {
+            return await _context.ShoppingCarts
+                .Include(s => s.User)
+                .Include(s => s.ShoppingCartItems)
+                .ThenInclude(li => li.TouristRoute)
+                .Where(s => s.UserId == userId)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task CreateShoppingCartAsync(ShoppingCart shoppingCart)
+        {
+            await _context.ShoppingCarts.AddAsync(shoppingCart);
+        }
     }
 }
 

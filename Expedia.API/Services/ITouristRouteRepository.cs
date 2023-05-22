@@ -49,6 +49,13 @@ namespace Expedia.API.Services
 
         // save repo
         Task<bool> SaveAsync();
+
+        //=============================
+        // get shopping cart by userId
+        Task<ShoppingCart> GetShoppingCartByUserIdAsync(string userId);
+
+        // create shopping cart
+        Task CreateShoppingCartAsync(ShoppingCart shoppingCart);
     }
 }
 

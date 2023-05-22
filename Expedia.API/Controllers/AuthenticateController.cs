@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using Expedia.API.Dtos;
 using Expedia.API.Models;
+using Expedia.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,16 +19,19 @@ namespace Expedia.API.Controllers
         private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ITouristRouteRepository _touristRouteRepository;
 
         public AuthenticateController(
             IConfiguration configuration,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager
+            SignInManager<ApplicationUser> signInManager,
+            ITouristRouteRepository touristRouteRepository
         )
         {
             this._configuration = configuration;
             this._userManager = userManager;
             this._signInManager = signInManager;
+            this._touristRouteRepository = touristRouteRepository;
         }
 
         [AllowAnonymous]
@@ -102,7 +106,16 @@ namespace Expedia.API.Controllers
             {
                 return BadRequest();
             }
-            // 3. response
+            // 3. init shopping cart
+            var shoppingCart = new ShoppingCart()
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+            };
+            await _touristRouteRepository.CreateShoppingCartAsync(shoppingCart);
+            await _touristRouteRepository.SaveAsync();
+
+            // 4. response
             return Ok();
         }
     } 
