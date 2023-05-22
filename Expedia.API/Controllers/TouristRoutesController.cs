@@ -24,13 +24,15 @@ namespace Expedia.API.Controllers
         private ITouristRouteRepository _touristRouteRepository;
         private readonly IMapper _mapper;
         private readonly IUrlHelper _urlHelper;
+        private readonly IPropertyMappingService _propertyMappingService;
 
         public TouristRoutesController(
             ITouristRouteRepository touristRouteRepository,
             IMapper mapper,
 
             IUrlHelperFactory urlHelperFactory,
-            IActionContextAccessor actionContextAccessor
+            IActionContextAccessor actionContextAccessor,
+            IPropertyMappingService propertyMappingService
         )
         {
             _touristRouteRepository = touristRouteRepository;
@@ -38,6 +40,7 @@ namespace Expedia.API.Controllers
             //
             _urlHelper = urlHelperFactory.GetUrlHelper(
                 actionContextAccessor.ActionContext);
+            _propertyMappingService = propertyMappingService;
         }
 
         private string GenerateTouristRouteResourceURL(
@@ -90,6 +93,13 @@ namespace Expedia.API.Controllers
             //[FromQuery(Name = "Rating")] string Rating // lessThan, largerThan, equalTo
             )
         {
+            // validate orderBy string is valid
+            if (!_propertyMappingService
+                .IsMappingExists<TouristRouteDto, TouristRoute>(parameters.OrderBy))
+            {
+                return BadRequest("OrderBy is invalid");
+            }
+
             var touristRoutesFromRepo =
                 await this._touristRouteRepository.GetTouristRoutesAsync(
                     parameters.Keyword,
