@@ -85,3 +85,4 @@
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/jiaronghe/Desktop/projects/dotnet/Expedia.API/Expedia.API/bin/Debug/net7.0/Stateless.dll

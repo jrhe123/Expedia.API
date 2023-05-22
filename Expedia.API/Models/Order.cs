@@ -44,7 +44,7 @@ namespace Expedia.API.Models
 
         public DateTime CreateDateUTC { get; set; }
 
-        public string TransactionMetadata { get; set; }
+        public string? TransactionMetadata { get; set; }
 
         StateMachine<OrderStateEnum, OrderStateTriggerEnum> _machine;
 

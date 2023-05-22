@@ -72,6 +72,9 @@ namespace Expedia.API.Services
 
         // delete shopping cart items
         void DeleteShoppingCartItems(IEnumerable<LineItem> lineItems);
+
+        // add order
+        Task AddOrderAsync(Order order);
     }
 }
 

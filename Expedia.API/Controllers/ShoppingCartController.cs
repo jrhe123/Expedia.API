@@ -121,6 +121,45 @@ namespace Expedia.API.Controllers
 
             return NoContent();
         }
+
+
+        [HttpPost("checkout")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> Checkout()
+        {
+            // 1. get user from context
+            var userId = _httpContextAccessor.HttpContext.User
+                .FindFirst(ClaimTypes.NameIdentifier)
+                .Value;
+
+            // 2. get shopping cart by userId
+            var shoppingCart = await _touristRouteRepository
+                .GetShoppingCartByUserIdAsync(userId);
+            if (shoppingCart.ShoppingCartItems.Count == 0)
+            {
+                return BadRequest();
+            }
+            // 3. create order
+            var order = new Order()
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                State = OrderStateEnum.Pending,
+                OrderItems = shoppingCart.ShoppingCartItems,
+                CreateDateUTC = DateTime.UtcNow,
+            };
+            // 3.1 empty shopping cart
+            shoppingCart.ShoppingCartItems = null;
+            // 3.2 create order
+            await _touristRouteRepository.AddOrderAsync(order);
+            await _touristRouteRepository.SaveAsync();
+
+            // 4. response
+            return Ok(
+                _mapper.Map<OrderDto>(order)
+                );
+        }
+
     }
 
 }
