@@ -18,7 +18,9 @@ namespace Expedia.API.Services
         public async Task<IEnumerable<TouristRoute>> GetTouristRoutesAsync(
             string Keyword,
             string RatingOperator,
-            int? RatingValue
+            int? RatingValue,
+            int PageSize,
+            int PageNumber
         )
         {
             // return _context.TouristRoutes;
@@ -53,6 +55,10 @@ namespace Expedia.API.Services
                     _ => result.Where(item => item.Rating == RatingValue),
                 };
             }
+            // pagination
+            var skip = (PageNumber - 1) * PageSize;
+            result = result.Skip(skip);
+            result = result.Take(PageSize);
             // include / join
             return await result.ToListAsync();
         }

@@ -10,7 +10,9 @@ namespace Expedia.API.Services
 		Task<IEnumerable<TouristRoute>> GetTouristRoutesAsync(
 			string Keyword,
 			string RatingOperator,
-			int? RatingValue
+			int? RatingValue,
+            int PageSize,
+            int PageNumber
             );
 
         // get by id
