@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using AutoMapper;
 using Expedia.API.Dtos;
+using Expedia.API.Helpers;
 using Expedia.API.Models;
 using Expedia.API.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -101,6 +102,21 @@ namespace Expedia.API.Controllers
             }
 
             _touristRouteRepository.DeleteShoppingCartItem(lineItem);
+            await _touristRouteRepository.SaveAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("items/({ItemIds})")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> DeleteShoppingCartItems(
+            [ModelBinder(BinderType = typeof(ArrayModelBinder))][FromRoute] IEnumerable<int> ItemIds
+            )
+        {
+            var lineItems = await _touristRouteRepository
+                .GetShoppingCartItemByItemIdListAsync(ItemIds);
+
+            _touristRouteRepository.DeleteShoppingCartItems(lineItems);
             await _touristRouteRepository.SaveAsync();
 
             return NoContent();

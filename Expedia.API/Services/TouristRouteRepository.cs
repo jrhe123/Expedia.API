@@ -173,6 +173,18 @@ namespace Expedia.API.Services
         {
             _context.LineItems.Remove(lineItem);
         }
+
+        public async Task<IEnumerable<LineItem>> GetShoppingCartItemByItemIdListAsync(IEnumerable<int> ids)
+        {
+            return await _context.LineItems
+                .Where(item => ids.Contains(item.Id))
+                .ToListAsync();
+        }
+
+        public void DeleteShoppingCartItems(IEnumerable<LineItem> lineItems)
+        {
+            _context.LineItems.RemoveRange(lineItems);
+        }
     }
 }
 
