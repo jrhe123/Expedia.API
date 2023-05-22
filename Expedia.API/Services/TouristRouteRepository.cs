@@ -157,6 +157,11 @@ namespace Expedia.API.Services
         {
             await _context.ShoppingCarts.AddAsync(shoppingCart);
         }
+
+        public async Task AddShoppingCartItemAsync(LineItem lineItem)
+        {
+            await _context.LineItems.AddAsync(lineItem);
+        }
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using AutoMapper;
 using Expedia.API.Dtos;
+using Expedia.API.Models;
 using Expedia.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,45 @@ namespace Expedia.API.Controllers
             return Ok(
                 _mapper.Map<ShoppingCartDto>(shoppingCart)
                 ) ;
+        }
+
+        [HttpPost("items")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> AddShoppingCartItem(
+            [FromBody] AddShoppingCartItemDto addShoppingCartItemDto
+            )
+        {
+            // 1. get user from context
+            var userId = _httpContextAccessor.HttpContext.User
+                .FindFirst(ClaimTypes.NameIdentifier)
+                .Value;
+
+            // 2. get shopping cart by userId
+            var shoppingCart = await _touristRouteRepository
+                .GetShoppingCartByUserIdAsync(userId);
+
+            // 3. add line item
+            var touristRouteRepo = await _touristRouteRepository.GetTouristRouteAsync(
+                addShoppingCartItemDto.TouristRouteId
+                );
+            if (touristRouteRepo == null)
+            {
+                return NotFound($"Tourist route not found {addShoppingCartItemDto.TouristRouteId}");
+            }
+
+            var lineItem = new LineItem()
+            {
+                TouristRouteId = addShoppingCartItemDto.TouristRouteId,
+                ShoppingCartId = shoppingCart.Id,
+                OriginalPrice = touristRouteRepo.OriginalPrice,
+                DiscountPercent = touristRouteRepo.DiscountPercent
+            };
+            await _touristRouteRepository.AddShoppingCartItemAsync(lineItem);
+            await _touristRouteRepository.SaveAsync();
+
+            return Ok(
+                _mapper.Map<ShoppingCartDto>(shoppingCart)
+                );
         }
 	}
 }
