@@ -1,13 +1,14 @@
 ﻿using System;
 using Expedia.API.Models;
 using System.Threading.Tasks;
+using Expedia.API.Helpers;
 
 namespace Expedia.API.Services
 {
 	public interface ITouristRouteRepository
 	{
 		// get list
-		Task<IEnumerable<TouristRoute>> GetTouristRoutesAsync(
+		Task<PaginationList<TouristRoute>> GetTouristRoutesAsync(
 			string Keyword,
 			string RatingOperator,
 			int? RatingValue,

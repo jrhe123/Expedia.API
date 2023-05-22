@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Expedia.API.Database;
+using Expedia.API.Helpers;
 using Expedia.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,7 @@ namespace Expedia.API.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<TouristRoute>> GetTouristRoutesAsync(
+        public async Task<PaginationList<TouristRoute>> GetTouristRoutesAsync(
             string Keyword,
             string RatingOperator,
             int? RatingValue,
@@ -55,12 +56,15 @@ namespace Expedia.API.Services
                     _ => result.Where(item => item.Rating == RatingValue),
                 };
             }
-            // pagination
-            var skip = (PageNumber - 1) * PageSize;
-            result = result.Skip(skip);
-            result = result.Take(PageSize);
+            // pagination (move to "PaginationList")
+            //var skip = (PageNumber - 1) * PageSize;
+            //result = result.Skip(skip);
+            //result = result.Take(PageSize);
             // include / join
-            return await result.ToListAsync();
+
+            return await PaginationList<TouristRoute>.CreateAsync(
+                PageNumber, PageSize, result
+                );
         }
 
         public async Task<TouristRoute> GetTouristRouteAsync(Guid TouristRouteId)
