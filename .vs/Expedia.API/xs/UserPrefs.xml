@@ -1,9 +1,8 @@
-﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{04E41162-8871-4C2F-AA13-4145A73617CA}|https">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0AB499F5-B03B-4A78-8368-D7FAEE67C069}|Default">
   <MonoDevelop.Ide.ItemProperties.Expedia.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="Expedia.API/Program.cs">
     <Files>

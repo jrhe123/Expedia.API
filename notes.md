@@ -7,8 +7,20 @@
 
 - Properties/launchSettings.json
 
+### HOW TO DEPLOY THIS APP
+- Azure
+- SQL Server
+- ACR
 
 ### docker
+- docker build -t expedia .
+- docker run -d --name expediaAPI -p 8080:80 expedia
+
+### need to change the database connection string
+- docker inspect bridge
+- replace "localhost" with "your_database_docker_ip(IPv4Address e.g., 172.17.0.2)"
+
+### other docker
 - reference: https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&pivots=cs1-bash
 - docker pull mcr.microsoft.com/azure-sql-edge
 - docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=PgPm0tUXb2jY33cPTv3a' \
@@ -115,3 +127,6 @@ cmd: dotnet tool install --global dotnet-ef
 search: cmd + shift + f
 build: cmd + option + enter
 double click: collapse side bar
+
+### video
+- https://www.youtube.com/@studyworld1726
