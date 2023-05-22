@@ -12,6 +12,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Expedia.API.Models;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetValue<string>(
@@ -126,6 +127,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// register url helper
+builder.Services.AddSingleton<
+    IActionContextAccessor, ActionContextAccessor>();
 
 //
 var app = builder.Build();

@@ -12,6 +12,8 @@ using Expedia.API.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Expedia.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Expedia.API.Controllers
 {
@@ -21,19 +23,60 @@ namespace Expedia.API.Controllers
     {
         private ITouristRouteRepository _touristRouteRepository;
         private readonly IMapper _mapper;
+        private readonly IUrlHelper _urlHelper;
 
         public TouristRoutesController(
             ITouristRouteRepository touristRouteRepository,
-            IMapper mapper
+            IMapper mapper,
+
+            IUrlHelperFactory urlHelperFactory,
+            IActionContextAccessor actionContextAccessor
         )
         {
             _touristRouteRepository = touristRouteRepository;
             _mapper = mapper;
+            //
+            _urlHelper = urlHelperFactory.GetUrlHelper(
+                actionContextAccessor.ActionContext);
         }
 
+        private string GenerateTouristRouteResourceURL(
+            TouristRouteResourceParameters parameters,
+            PaginationResourceParameters parameters2,
+            ResourceUriType type
+            )
+        {
+            return type switch
+            {
+                ResourceUriType.PreviousPage => _urlHelper.Link("GetTouristRoutes",
+                    new
+                    {
+                        keyword = parameters.Keyword,
+                        rating = parameters.Rating,
+                        pageNumber = parameters2.PageNumber - 1,
+                        pageSize = parameters2.PageSize,
+                    }),
+                ResourceUriType.NextPage => _urlHelper.Link("GetTouristRoutes",
+                    new
+                    {
+                        keyword = parameters.Keyword,
+                        rating = parameters.Rating,
+                        pageNumber = parameters2.PageNumber + 1,
+                        pageSize = parameters2.PageSize,
+                    }),
+                _ => _urlHelper.Link("GetTouristRoutes",
+                    new
+                    {
+                        keyword = parameters.Keyword,
+                        rating = parameters.Rating,
+                        pageNumber = parameters2.PageNumber,
+                        pageSize = parameters2.PageSize,
+                    }),
+            };
+        }
 
         // https://localhost:7143/api/touristRoutes?Keyword=xxx&Rating=largerThan3
-        [HttpGet]
+        [HttpGet(Name = "GetTouristRoutes")]
         [HttpHead]
         public async Task<IActionResult> GetTouristRoutes(
             [FromQuery] TouristRouteResourceParameters parameters,
@@ -59,7 +102,33 @@ namespace Expedia.API.Controllers
             }
             var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(
                 touristRoutesFromRepo);
-            return Ok(touristRoutesDto);
+
+            // Hatoas: prepare for x-pagination into response headers
+            var previousPageLink = touristRoutesFromRepo.HasPrevious
+                ? GenerateTouristRouteResourceURL(
+                    parameters, parameters2, ResourceUriType.PreviousPage
+                    ) : null;
+            var nextPageLink = touristRoutesFromRepo.HasNext
+                ? GenerateTouristRouteResourceURL(
+                    parameters, parameters2, ResourceUriType.NextPage
+                    ) : null;
+
+            var paginationMetadata = new
+            {
+                previousPageLink,
+                nextPageLink,
+                totalCount = touristRoutesFromRepo.TotalCount,
+                pageSize = touristRoutesFromRepo.PageSize,
+                currentPage = touristRoutesFromRepo.CurrentPage,
+                totalPages = touristRoutesFromRepo.TotalPage,
+            };
+            Response.Headers.Add(
+                "x-pagination",
+                Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata)
+            );
+            return Ok(
+                touristRoutesDto
+                );
         }
 
 
